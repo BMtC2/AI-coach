@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI that makes students think – CoP Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#51247A;
+    --purple-dk:#2C1345;
+    --ink:#1C1C1E;
+    --muted:#6B6B76;
+    --lav:#B9A5D6;
+    --lav-dim:#8B76AE;
+    --tint:#F4F1F8;
+    --line:#E4DEEE;
+    --warn:#B23A2E;
+    --white:#FFFFFF;
+    --r:4px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Figtree',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--ink);background:#000;-webkit-font-smoothing:antialiased;text-align:left;}
+
+  .deck{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;}
+  .deck::-webkit-scrollbar{display:none;}
+  .deck{-ms-overflow-style:none;scrollbar-width:none;}
+
+  section{
+    min-height:100vh;scroll-snap-align:start;position:relative;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:9vh 9vw;
+  }
+  section.light{background:var(--white);}
+  section.dark{background:var(--purple-dk);}
+
+  .kicker{display:flex;align-items:center;gap:12px;margin-bottom:3.4vh;}
+  .kicker .sq{width:12px;height:12px;border-radius:1px;background:var(--purple);flex:none;}
+  section.dark .kicker .sq{background:var(--lav);}
+  .kicker span{font-size:13px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);}
+  section.dark .kicker span{color:var(--lav);}
+
+  h1{font-size:clamp(2.5rem,5.8vw,4.5rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:var(--white);}
+  h1 .it{font-style:italic;color:var(--lav);}
+  .sub{font-size:clamp(1.05rem,1.9vw,1.45rem);font-weight:500;color:var(--lav);margin-top:3.6vh;max-width:60ch;}
+  .credit{position:absolute;left:9vw;bottom:6.5vh;font-size:.86rem;color:var(--lav-dim);letter-spacing:.01em;}
+
+  .statement{font-size:clamp(1.85rem,4.1vw,3.25rem);font-weight:800;line-height:1.14;letter-spacing:-.012em;max-width:24ch;}
+  .statement .p{color:var(--purple);font-style:italic;}
+  .lead{font-size:clamp(1.02rem,1.75vw,1.3rem);color:var(--ink);margin-top:3.4vh;max-width:66ch;line-height:1.55;}
+  .lead.mut{color:var(--muted);}
+  .lead .num{color:var(--purple);font-weight:700;}
+  .lead .src{color:var(--lav-dim);font-size:.9em;}
+
+  .panel{
+    margin-top:4.6vh;background:var(--tint);border-radius:var(--r);
+    padding:3vh 28px;margin-left:-28px;max-width:calc(66ch + 28px);
+    font-size:clamp(1.2rem,2.2vw,1.6rem);font-weight:700;line-height:1.35;text-align:left;
+  }
+  .panel .p{color:var(--purple);}
+
+  /* ---- S3 nested composition ---- */
+  .nest{
+    margin-top:5vh;max-width:940px;
+    background:var(--purple-dk);border-radius:var(--r);
+    padding:18px;box-shadow:0 16px 44px rgba(44,19,69,.22);
+  }
+  .nest-card{
+    background:var(--white);border-radius:3px;padding:30px 34px;
+  }
+  .nest-card h3{display:flex;align-items:center;gap:12px;font-size:clamp(1.4rem,2.3vw,1.85rem);font-weight:800;color:var(--purple);margin-bottom:12px;}
+  .nest-card h3 .sq{width:14px;height:14px;border-radius:1px;background:var(--purple);flex:none;}
+  .nest-card p{font-size:clamp(1.02rem,1.7vw,1.22rem);line-height:1.55;color:var(--ink);}
+  .nest-lip{display:flex;align-items:baseline;gap:11px;padding:16px 16px 4px;flex-wrap:wrap;}
+  .nest-lip .lipsq{width:11px;height:11px;border-radius:1px;background:var(--lav);flex:none;align-self:center;}
+  .nest-lip .liplabel{font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--lav);}
+  .nest-lip .liptext{font-size:clamp(.95rem,1.5vw,1.08rem);color:#E9E2F2;line-height:1.45;}
+  .nestcap{margin-top:3.4vh;font-size:clamp(1.02rem,1.7vw,1.24rem);color:var(--ink);}
+  .nestcap strong{color:var(--purple);}
+  .travel{margin-top:2.6vh;font-size:clamp(1.02rem,1.7vw,1.22rem);font-weight:800;color:var(--ink);}
+
+  /* ---- S4 presenter-controlled sequence ---- */
+  .stage4{margin-top:2.2vh;max-width:1040px;width:100%;}
+  .stage4.clickable{cursor:pointer;}
+  .qbub{
+    display:inline-block;background:var(--purple);color:#fff;border-radius:var(--r);
+    padding:16px 22px;font-size:clamp(1.05rem,1.9vw,1.4rem);font-weight:700;
+    box-shadow:0 10px 26px rgba(81,36,122,.3);
+  }
+  .qbub .who{display:block;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--lav);margin-top:6px;}
+  .caret{display:none;width:2px;height:1em;background:#fff;margin-left:3px;vertical-align:-2px;}
+  @keyframes blink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+  .caret.on{display:inline-block;animation:blink .75s steps(1) infinite;}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:3.2vh;}
+  .resp{border-radius:var(--r);padding:26px 28px;}
+  .resp.plain{background:var(--white);border:1px solid var(--line);box-shadow:0 12px 34px rgba(44,19,69,.07);}
+  .resp.coachc{background:var(--tint);box-shadow:0 12px 34px rgba(44,19,69,.06);}
+  .tag{font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;}
+  .resp.plain .tag{color:var(--muted);}
+  .resp.coachc .tag{color:var(--purple);}
+  .dots{display:none;gap:6px;margin:4px 0 10px;}
+  .dots i{width:7px;height:7px;border-radius:1px;background:var(--lav-dim);animation:dotp 1s infinite;}
+  .dots i:nth-child(2){animation-delay:.18s;}
+  .dots i:nth-child(3){animation-delay:.36s;}
+  @keyframes dotp{0%,60%,100%{opacity:.25;}30%{opacity:1;}}
+  .say{font-size:1.06rem;font-weight:700;margin-bottom:12px;color:var(--ink);min-height:1.4em;}
+  .cite{position:relative;font-size:.98rem;color:var(--ink);padding:9px 0;line-height:1.4;}
+  .cite + .cite{border-top:1px dashed var(--line);}
+  .cite .strike{position:absolute;left:0;top:50%;height:2px;background:var(--warn);width:100%;pointer-events:none;}
+  .nf{display:inline-block;margin-left:9px;font-size:.68rem;font-weight:800;color:var(--warn);letter-spacing:.09em;text-transform:uppercase;border:1.5px solid var(--warn);padding:1px 7px;border-radius:2px;vertical-align:middle;}
+  .flagA{margin-top:14px;color:var(--warn);font-weight:700;font-size:1.02rem;line-height:1.4;}
+  .coachq{font-size:1.08rem;line-height:1.5;margin-bottom:10px;}
+  .coachq .hl{
+    font-style:italic;font-weight:700;color:var(--purple-dk);
+    background-image:linear-gradient(transparent 58%, rgba(185,165,214,.55) 0);
+    background-repeat:no-repeat;background-size:100% 100%;
+  }
+  .coachnote{font-size:.98rem;color:var(--muted);line-height:1.45;}
+  .foot4{margin-top:3.4vh;max-width:70ch;}
+  .foot4 .f1{font-size:1.06rem;color:var(--muted);margin-bottom:6px;}
+  .foot4 .f2{font-size:clamp(1.15rem,2vw,1.45rem);font-weight:800;color:var(--purple);margin-bottom:10px;}
+  .foot4 .f3{font-size:1.04rem;color:var(--ink);}
+  .cue{
+    display:none;align-items:center;gap:9px;margin-top:2.4vh;
+    border:1.5px solid var(--purple);color:var(--purple);border-radius:var(--r);
+    padding:9px 16px;font-size:.88rem;font-weight:700;letter-spacing:.02em;
+    user-select:none;
+  }
+  .cue::before{content:"";width:9px;height:9px;border-radius:1px;background:var(--purple);animation:dotp 1.2s infinite;}
+  .replay{
+    display:none;margin-top:2.4vh;margin-left:12px;border:1.5px solid var(--purple);color:var(--purple);background:transparent;
+    font-family:inherit;font-weight:700;font-size:.9rem;padding:9px 18px;border-radius:var(--r);
+    cursor:pointer;transition:all .2s;
+  }
+  .replay:hover{background:var(--purple);color:#fff;}
+  .s4row{display:flex;align-items:center;flex-wrap:wrap;}
+
+  .kw{display:flex;flex-wrap:wrap;gap:28px;margin-top:3.8vh;}
+  .kw .item{display:flex;align-items:center;gap:10px;font-weight:700;font-size:clamp(.98rem,1.6vw,1.15rem);}
+  .kw .sq{width:12px;height:12px;border-radius:1px;background:var(--purple);flex:none;}
+
+  .mark{position:absolute;top:8vh;right:9vw;width:96px;height:96px;}
+  .mark.small{width:72px;height:72px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .mark svg{width:100%;height:100%;animation:spin 90s linear infinite;transform-origin:center;}
+  @media (prefers-reduced-motion: reduce){ .mark svg{animation:none;} }
+
+  .nav{position:fixed;right:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:20;}
+  .nav a{width:11px;height:11px;border-radius:2px;background:#C9BCDD;transition:all .3s;display:block;}
+  .nav a.active{background:var(--purple);transform:scale(1.35);}
+  .hint{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);font-size:.8rem;color:var(--lav-dim);z-index:20;transition:opacity .4s;}
+  .hint.hide{opacity:0;}
+
+  @media(max-width:780px){
+    section{padding:9vh 7vw;}
+    .duo{grid-template-columns:1fr;}
+    .nav{right:12px;}
+    .mark{width:64px;height:64px;top:6vh;right:7vw;}
+    .credit{left:7vw;}
+    .panel{margin-left:-18px;padding-left:18px;padding-right:18px;}
+    .nest{padding:14px;}
+    .nest-card{padding:24px 22px;}
+  }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1 · TITLE -->
+  <section class="dark" id="s1">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 120 120">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#B9A5D6"/>
+            <stop offset="1" stop-color="#51247A"/>
+          </linearGradient>
+        </defs>
+        <g opacity=".38" transform="rotate(22.5 60 60)">
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(0 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(45 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(90 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(135 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(180 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(225 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(270 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(315 60 60)"/>
+        </g>
+        <g>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(0 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(45 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(90 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(135 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(180 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(225 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(270 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(315 60 60)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="kicker rv"><span class="sq"></span><span>UQBS AI Community of Practice</span></div>
+    <h1 class="rv">AI that makes students <span class="it">think</span> –<br>not think for them.</h1>
+    <p class="sub rv">A coaching + guardrail approach.</p>
+    <div class="credit rv">Michael Lin &nbsp;·&nbsp; Principal Learning Designer &nbsp;·&nbsp; BEL AI Initiative, UQ Business School</div>
+  </section>
+
+  <!-- 2 · OBSERVED IN PRACTICE -->
+  <section class="light" id="s2">
+    <div class="kicker rv"><span class="sq"></span><span>Observed in practice</span></div>
+    <div class="statement rv">Students are handing their thinking to AI –<br>and it's the <span class="p">higher&#8209;order</span> thinking<br>they hand over most.</div>
+    <p class="lead rv">Higher-order is the deep end of learning – <strong>analysing, evaluating, creating</strong>.</p>
+    <p class="lead mut rv">And it's exactly where students use AI most: in real usage, creating <span class="num">39.8%</span> and analysing <span class="num">30.2%</span> top the list – routine tasks sit near 10% each. <span class="src">(Anthropic student-usage data · Stanford AI Index 2026)</span></p>
+    <div class="panel rv">Which is the exact judgement <span class="p">our assessments are built to grow.</span></div>
+  </section>
+
+  <!-- 3 · THE SHIFT -->
+  <section class="light" id="s3">
+    <div class="kicker rv"><span class="sq"></span><span>The shift</span></div>
+    <div class="statement rv" style="max-width:26ch;">So the question isn't <span class="p">whether</span> to allow AI.<br>It's whether AI can push them<br>to think <span class="p">harder</span>.</div>
+    <div class="nest" id="nest">
+      <div class="nest-card" id="nestCard">
+        <h3><span class="sq"></span>Coaching</h3>
+        <p>It questions your reasoning, tests your argument, and helps you build one that's genuinely yours – and it tells you the truth when an idea is generic, instead of agreeing.</p>
+      </div>
+      <div class="nest-lip" id="nestLip">
+        <span class="lipsq"></span>
+        <span class="liplabel">Guardrail</span>
+        <span class="liptext">it won't write it, find the sources, or hand over the answer – that part stays the student's, and the line doesn't move.</span>
+      </div>
+    </div>
+    <p class="nestcap" id="nestCap"><strong>Soft words, hard actions</strong> – the conversation stays warm; the boundary never bends.</p>
+    <p class="travel rv">Not tied to one course – a method that travels to any writing-based analysis.</p>
+  </section>
+
+  <!-- 4 · SEE IT WORK (presenter-controlled) -->
+  <section class="light" id="s4">
+    <div class="kicker rv"><span class="sq"></span><span>See it work</span></div>
+    <div class="stage4" id="stage4">
+      <div class="qbub" id="qbub"><span class="qt" id="qt" data-text="Find me two articles for this.">Find me two articles for this.</span><span class="caret" id="caret"></span><span class="who">A first-year student · same question · two AIs</span></div>
+      <div class="duo">
+        <div class="resp plain" id="cardA">
+          <div class="tag">Plain AI</div>
+          <div class="dots" id="dotsA"><i></i><i></i><i></i></div>
+          <p class="say" id="sayA" data-text="Sure – here are two solid ones:">Sure – here are two solid ones:</p>
+          <div class="cite">Chen &amp; Roberts (2019). Trust and accountability in project teams. <em>Journal of Team Dynamics</em>, 14(2), 88–104.<span class="strike"></span><span class="nf">not found</span></div>
+          <div class="cite">Alvarez (2021). Ethical tension in high-stakes group decisions. <em>Management &amp; Society Review</em>, 9(1), 22–41.<span class="strike"></span><span class="nf">not found</span></div>
+          <p class="flagA" id="flagA">Neither exists. AI invented them – and citing them costs real marks.</p>
+        </div>
+        <div class="resp coachc" id="cardB">
+          <div class="tag">With the coach</div>
+          <div class="dots" id="dotsB"><i></i><i></i><i></i></div>
+          <p class="say" id="sayB" data-text="I won't hand you articles – finding them is half of what's marked here.">I won't hand you articles – finding them is half of what's marked here.</p>
+          <p class="coachq"><span class="hl" id="hl">&ldquo;Where have you looked so far – and what's not working?&rdquo;</span></p>
+          <p class="coachnote" id="coachnote">Then it walks you through searching – and judging – the evidence yourself.</p>
+        </div>
+      </div>
+      <div class="foot4" id="foot4">
+        <p class="f1">Most AI agrees, and hands over.</p>
+        <p class="f2">The coach tells the truth – and hands the thinking back.</p>
+        <p class="f3">That's why the change matters: the work, the marks, and the learning stay the student's.</p>
+      </div>
+      <div class="s4row">
+        <div class="cue" id="cue">Click – verify those citations</div>
+        <button class="replay" id="replay" type="button">Replay</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · WHY IT MATTERS -->
+  <section class="light" id="s5">
+    <div class="kicker rv"><span class="sq"></span><span>Why it matters</span></div>
+    <div class="statement rv" style="max-width:22ch;">We're not policing AI.<br><span class="p" style="font-style:normal;">We're building judgement.</span></div>
+    <p class="lead rv">As AI gets better at the writing and the analysis, the scarce human capability is judgement – deciding what matters, weighing the ethics, making the call. That's the core of management.</p>
+    <div class="kw rv">
+      <div class="item"><span class="sq"></span>Deciding what matters</div>
+      <div class="item"><span class="sq"></span>Weighing the ethics</div>
+      <div class="item"><span class="sq"></span>Making the call</div>
+    </div>
+    <p class="lead rv" style="margin-top:3.8vh;">And it stays the student's choice – a habit can't be forced. But when the guided path is also the genuinely useful one, <strong>good habits form on their own</strong>: quietly, in the work, without resentment.</p>
+    <div class="panel rv"><span class="p">Human-centred education</span> – with AI as the pressure, not the shortcut.</div>
+  </section>
+
+  <!-- 6 · CLOSING -->
+  <section class="dark" id="s6">
+    <div class="mark small" aria-hidden="true">
+      <svg viewBox="0 0 120 120">
+        <g opacity=".38" transform="rotate(22.5 60 60)">
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(0 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(45 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(90 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(135 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(180 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(225 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(270 60 60)"/>
+          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(315 60 60)"/>
+        </g>
+        <g>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(0 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(45 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(90 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(135 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(180 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(225 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(270 60 60)"/>
+          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(315 60 60)"/>
+        </g>
+      </svg>
+    </div>
+    <h1 class="rv">This is step one.</h1>
+    <p class="sub rv">We're piloting it with colleagues now.</p>
+    <p class="sub rv" style="color:#fff;margin-top:2.2vh;">If your course has a similar assessment – <strong>happy to have a chat.</strong></p>
+    <div class="credit rv">Michael Lin &nbsp;·&nbsp; Principal Learning Designer &nbsp;·&nbsp; BEL AI Initiative, UQ Business School</div>
+  </section>
+
+</div>
+
+<nav class="nav" id="nav"></nav>
+<div class="hint" id="hint">scroll · arrow keys</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  const deck = document.getElementById('deck');
+  const sections = Array.from(deck.querySelectorAll('section'));
+  const nav = document.getElementById('nav');
+  const hint = document.getElementById('hint');
+  const $ = id => document.getElementById(id);
+
+  sections.forEach((s) => {
+    const a = document.createElement('a');
+    a.href = '#' + s.id;
+    a.addEventListener('click', e => { e.preventDefault(); s.scrollIntoView({behavior:'smooth'}); });
+    nav.appendChild(a);
+  });
+  const dots = Array.from(nav.children);
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        const idx = sections.indexOf(en.target);
+        dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { root: deck, threshold: 0.55 });
+  sections.forEach(s => io.observe(s));
+
+  let scrolled = false;
+  deck.addEventListener('scroll', () => { if (!scrolled){ scrolled = true; hint.classList.add('hide'); } }, {passive:true});
+
+  function current(){ let best=0,bd=1e9; sections.forEach((s,i)=>{const d=Math.abs(s.getBoundingClientRect().top); if(d<bd){bd=d;best=i;}}); return best; }
+  document.addEventListener('keydown', e => {
+    if (['ArrowDown','ArrowRight','PageDown'].includes(e.key)) { e.preventDefault(); sections[Math.min(current()+1,sections.length-1)].scrollIntoView({behavior:'smooth'}); }
+    if (['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); sections[Math.max(current()-1,0)].scrollIntoView({behavior:'smooth'}); }
+  });
+
+  // ---- GSAP enhancement (no GSAP / no net: the page simply shows the finished state) ----
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    const INST = reduce; // instant mode: keep the click-gating, skip the motion
+
+    // generic rise-in
+    if (!INST) {
+      sections.forEach(sec => {
+        const els = sec.querySelectorAll('.rv');
+        if (!els.length) return;
+        gsap.set(els, { autoAlpha: 0, y: 30 });
+        ScrollTrigger.create({
+          trigger: sec, scroller: deck, start: 'top 62%', once: true,
+          onEnter: () => gsap.to(els, { autoAlpha: 1, y: 0, duration: .85, stagger: .13, ease: 'power3.out' })
+        });
+      });
+
+      // S3 nest sequence: frame settles, card lands inside, lip locks, caption
+      const nest = $('nest'), nestCard = $('nestCard'), nestLip = $('nestLip'), nestCap = $('nestCap');
+      gsap.set(nest, { autoAlpha: 0, scale: .975, transformOrigin: '50% 60%' });
+      gsap.set(nestCard, { autoAlpha: 0, y: 26 });
+      gsap.set(nestLip, { autoAlpha: 0 });
+      gsap.set(nestCap, { autoAlpha: 0, y: 14 });
+      ScrollTrigger.create({
+        trigger: '#s3', scroller: deck, start: 'top 55%', once: true,
+        onEnter: () => {
+          gsap.timeline()
+            .to(nest, { autoAlpha: 1, scale: 1, duration: .6, ease: 'power3.out' }, '+=.35')
+            .to(nestCard, { autoAlpha: 1, y: 0, duration: .65, ease: 'back.out(1.4)' }, '-=.15')
+            .to(nestLip, { autoAlpha: 1, duration: .5 }, '-=.1')
+            .to(nestCap, { autoAlpha: 1, y: 0, duration: .5 }, '+=.1');
+        }
+      });
+    }
+
+    // ---- S4: presenter-controlled four acts ----
+    const stage4El = $('stage4');
+    const qbub = $('qbub'), qt = $('qt'), caret = $('caret');
+    const cardA = $('cardA'), cardB = $('cardB');
+    const dotsA = $('dotsA'), dotsB = $('dotsB');
+    const sayA = $('sayA'), sayB = $('sayB');
+    const cites = cardA.querySelectorAll('.cite');
+    const strikes = cardA.querySelectorAll('.strike');
+    const nfs = cardA.querySelectorAll('.nf');
+    const flagA = $('flagA'), hl = $('hl'), coachnote = $('coachnote');
+    const footEls = document.querySelectorAll('#foot4 p');
+    const cue = $('cue'), replayBtn = $('replay');
+
+    // initial (rewound) states
+    gsap.set(qbub, { autoAlpha: 0, y: 16, scale: .97 });
+    gsap.set([cardA, cardB], { autoAlpha: 0, y: 28 });
+    gsap.set(cites, { autoAlpha: 0, x: -12 });
+    gsap.set(strikes, { width: 0 });
+    gsap.set(nfs, { autoAlpha: 0, scale: .5 });
+    gsap.set([flagA, coachnote], { autoAlpha: 0 });
+    gsap.set(hl, { backgroundSize: '0% 100%' });
+    gsap.set(footEls, { autoAlpha: 0, y: 16 });
+    sayA.style.visibility = 'hidden'; sayB.style.visibility = 'hidden';
+
+    const tw = (t, v) => new Promise(r => gsap.to(t, { ...v, duration: INST ? 0 : (v.duration ?? .5), onComplete: r }));
+    const wait = ms => new Promise(r => setTimeout(r, INST ? 0 : ms));
+    const typeText = (el, speed = 24) => new Promise(res => {
+      const full = el.dataset.text;
+      el.style.visibility = 'visible';
+      if (INST) { el.textContent = full; return res(); }
+      el.textContent = '';
+      let i = 0;
+      const t = setInterval(() => { el.textContent = full.slice(0, ++i); if (i >= full.length) { clearInterval(t); res(); } }, speed);
+    });
+
+    let stage = 0, busy = false, started = false;
+    const cues = { 1: 'Click – verify those citations', 2: 'Click – now with the coach', 3: 'Click – why this matters' };
+    function setCue(n){ if (cues[n]) { cue.textContent = cues[n]; cue.style.display = 'inline-flex'; stage4El.classList.add('clickable'); } }
+    function hideCue(){ cue.style.display = 'none'; stage4El.classList.remove('clickable'); }
+
+    async function act1(){
+      await tw(qbub, { autoAlpha: 1, y: 0, scale: 1, duration: .45, ease: 'back.out(1.5)' });
+      caret.classList.add('on');
+      await typeText(qt, 30);
+      caret.classList.remove('on');
+      await tw(cardA, { autoAlpha: 1, y: 0, duration: .5, ease: 'power3.out' });
+      dotsA.style.display = 'flex'; await wait(850); dotsA.style.display = 'none';
+      await typeText(sayA);
+      for (const c of cites) { await tw(c, { autoAlpha: 1, x: 0, duration: .4 }); }
+    }
+    async function act2(){
+      for (let i = 0; i < strikes.length; i++) {
+        await tw(strikes[i], { width: '100%', duration: .45, ease: 'power2.inOut' });
+        await tw(nfs[i], { autoAlpha: 1, scale: 1, duration: .28, ease: 'back.out(2)' });
+      }
+      await tw(flagA, { autoAlpha: 1, duration: .45 });
+    }
+    async function act3(){
+      await tw(cardB, { autoAlpha: 1, y: 0, duration: .5, ease: 'power3.out' });
+      dotsB.style.display = 'flex'; await wait(800); dotsB.style.display = 'none';
+      await typeText(sayB);
+      await tw(hl, { backgroundSize: '100% 100%', duration: .65, ease: 'power2.out' });
+      await tw(coachnote, { autoAlpha: 1, duration: .4 });
+    }
+    async function act4(){
+      for (const f of footEls) { await tw(f, { autoAlpha: 1, y: 0, duration: .45 }); }
+    }
+    const acts = [act1, act2, act3, act4];
+
+    async function runStage(n){
+      busy = true; hideCue();
+      await acts[n - 1]();
+      busy = false; stage = n;
+      if (n < 4) setCue(n); else replayBtn.style.display = 'inline-block';
+    }
+
+    ScrollTrigger.create({
+      trigger: '#s4', scroller: deck, start: 'top 55%', once: true,
+      onEnter: () => { if (!started) { started = true; runStage(1); } }
+    });
+
+    stage4El.addEventListener('click', (e) => {
+      if (e.target === replayBtn) return;
+      if (!busy && stage >= 1 && stage < 4) runStage(stage + 1);
+    });
+    replayBtn.addEventListener('click', () => {
+      if (busy) return;
+      replayBtn.style.display = 'none'; hideCue();
+      gsap.set(qbub, { autoAlpha: 0, y: 16, scale: .97 });
+      gsap.set([cardA, cardB], { autoAlpha: 0, y: 28 });
+      gsap.set(cites, { autoAlpha: 0, x: -12 });
+      gsap.set(strikes, { width: 0 });
+      gsap.set(nfs, { autoAlpha: 0, scale: .5 });
+      gsap.set([flagA, coachnote], { autoAlpha: 0 });
+      gsap.set(hl, { backgroundSize: '0% 100%' });
+      gsap.set(footEls, { autoAlpha: 0, y: 16 });
+      sayA.style.visibility = 'hidden'; sayB.style.visibility = 'hidden';
+      stage = 0; runStage(1);
+    });
+  }
+</script>
+</body>
+</html>
