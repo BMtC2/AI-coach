@@ -91,7 +91,9 @@
   .nest-lip .liptext{font-size:clamp(.95rem,1.5vw,1.08rem);color:#E9E2F2;line-height:1.45;}
   .nestcap{margin-top:3.4vh;font-size:clamp(1.02rem,1.7vw,1.24rem);color:var(--ink);}
   .nestcap strong{color:var(--purple);}
-  .travel{margin-top:2.6vh;font-size:clamp(1.02rem,1.7vw,1.22rem);font-weight:800;color:var(--ink);}
+  .travel{margin-top:2.6vh;font-size:clamp(1.02rem,1.65vw,1.2rem);font-weight:500;color:var(--ink);line-height:1.5;max-width:82ch;}
+  .travel strong{color:var(--purple);font-weight:800;}
+  .travel .p{color:var(--purple);font-weight:700;}
 
   /* ---- presenter-controlled sequence ---- */
   .stage4{margin-top:2.2vh;max-width:1040px;width:100%;}
@@ -351,7 +353,7 @@
     </div>
     <p class="nestcap" id="nestCap"><strong>Soft words, hard actions</strong> – the conversation stays warm; the boundary never bends.</p>
     <p class="nestcap rv">It starts from <strong>respect</strong> – students are adults who'll use AI either way, so good habits are built inside the work itself. Explicit, tested boundaries give the teaching team confidence too.</p>
-    <p class="travel rv">A method, not a tool – it travels to any writing-based analysis, across courses and disciplines.</p>
+    <p class="travel rv"><strong>A method, not a tool.</strong> Generic by default, or tailored to a specific assessment – a single plain-text file students paste into any AI, or deployed centrally via API. <span class="p">Same coach, any platform.</span></p>
   </section>
 
   <!-- 5 · SEE IT WORK (presenter-controlled chat comparison) -->
@@ -597,6 +599,9 @@
     if (premiseRan || INST) return; premiseRan = true;
     console.log('[deck] premise start');
     var drawn = { t:0 }, popped = {};
+    // pre-position the drawing head at the line start so it doesn't flash in from (0,0)
+    var pStart = hp.getPointAtLength(0);
+    drawHead.setAttribute('cx', pStart.x); drawHead.setAttribute('cy', pStart.y);
     var tl = gsap.timeline();
     tl.to(drawHead, { opacity:1, duration:.3 }, 0)
       .to(drawn, { t:1, duration:1.9, ease:'power1.inOut', onUpdate:function(){
@@ -623,9 +628,12 @@
     function startLife(){
       // arcs settle to a calm static state (no perpetual motion - the page comes to rest)
       gsap.to(arcs, { opacity:.7, duration:1.0, ease:'sine.out' });
+      // place the signal exactly at the start of the line BEFORE it appears, so it never flashes in from (0,0)
+      var p0 = hp.getPointAtLength(0);
+      signal.setAttribute('cx', p0.x); signal.setAttribute('cy', p0.y);
       gsap.set(signal, { opacity:0 });
       var sig = { t:0 }, prevX = -1, armed = [true,true,true,true,true];
-      gsap.to(signal, { opacity:.9, duration:.35 });
+      gsap.to(signal, { opacity:.9, duration:.5, delay:.2, ease:'sine.out' });
       gsap.to(sig, { t:1, duration:3.4, ease:'power1.inOut', repeat:0, delay:.2,
         onUpdate: function(){
           var p = hp.getPointAtLength(sig.t * hpLen);
