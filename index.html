@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,6 +154,88 @@
   .kw .item{display:flex;align-items:center;gap:10px;font-weight:700;font-size:clamp(.98rem,1.6vw,1.15rem);}
   .kw .sq{width:12px;height:12px;border-radius:1px;background:var(--purple);flex:none;}
 
+  /* ---- proof: judgement-training chat ---- */
+  .chat{margin-top:4vh;max-width:900px;width:100%;display:flex;flex-direction:column;gap:15px;}
+  .turn{display:flex;flex-direction:column;max-width:84%;}
+  .turn.stu{align-self:flex-start;}
+  .turn.co{align-self:flex-end;align-items:flex-end;}
+  .bub{border-radius:var(--r);padding:13px 18px;font-size:clamp(.95rem,1.45vw,1.1rem);line-height:1.5;}
+  .bub.s{background:var(--white);border:1px solid var(--line);color:var(--ink);box-shadow:0 6px 18px rgba(44,19,69,.05);}
+  .bub.c{background:var(--purple-dk);color:#ECE6F3;box-shadow:0 10px 26px rgba(44,19,69,.18);}
+  .movelab{font-size:.71rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:6px;}
+  .proofcap{margin-top:3.2vh;font-size:clamp(1.02rem,1.65vw,1.26rem);color:var(--ink);max-width:72ch;line-height:1.5;}
+  .proofcap strong{color:var(--purple);}
+
+  /* ---- red-team evidence ---- */
+  .redteam{margin-top:4vh;max-width:960px;width:100%;}
+  .rt-head{display:flex;align-items:center;gap:11px;font-size:clamp(1.05rem,1.8vw,1.35rem);font-weight:800;color:var(--ink);margin-bottom:2.6vh;}
+  .rt-head .sq{width:13px;height:13px;border-radius:1px;background:var(--purple);flex:none;}
+  .rt-pills{display:flex;flex-wrap:wrap;gap:12px;}
+  .rt-pill{position:relative;background:var(--tint);border-radius:999px;padding:10px 18px 10px 34px;font-size:clamp(.9rem,1.35vw,1.02rem);font-weight:600;color:var(--ink);font-style:italic;}
+  .rt-pill::before{content:"";position:absolute;left:15px;top:50%;transform:translateY(-50%);width:9px;height:9px;border-radius:1px;background:var(--purple);}
+  .rt-foot{margin-top:2.8vh;font-size:clamp(1rem,1.6vw,1.2rem);color:var(--muted);line-height:1.5;}
+  .rt-foot strong{color:var(--purple);}
+
+  /* ---- S5 comparison ---- */
+  .cstart{margin-top:1.2vh;margin-bottom:2.6vh;max-width:1060px;}
+  .cstart-lab{display:block;font-size:.74rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--lav-dim);margin-bottom:8px;}
+  .cstart-txt{font-size:clamp(1.1rem,2vw,1.5rem);font-weight:700;color:var(--ink);font-style:italic;}
+  .ccols{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1080px;width:100%;align-items:start;}
+  .ccol{border-radius:var(--r);padding:22px 24px;}
+  .ccol.l{background:var(--white);border:1px solid var(--line);box-shadow:0 10px 30px rgba(44,19,69,.06);}
+  .ccol.r{background:var(--tint);box-shadow:0 10px 30px rgba(44,19,69,.06);}
+  .ccol-top{display:flex;align-items:baseline;gap:10px;margin-bottom:13px;flex-wrap:wrap;}
+  .ccol-head{font-size:1.12rem;font-weight:800;color:var(--muted);}
+  .ccol-head.p{color:var(--purple);}
+  .ccol-sub{font-size:.8rem;color:var(--lav-dim);font-weight:600;}
+  .cout{font-size:.97rem;line-height:1.5;color:var(--ink);min-height:1.4em;margin-bottom:10px;}
+  .ccite{position:relative;font-size:.88rem;color:var(--muted);line-height:1.4;padding:6px 0;display:inline-block;}
+  .ccite .cstrike{position:absolute;left:0;top:50%;height:2px;background:var(--warn);width:0;}
+  .cnf{display:inline-block;margin-left:8px;font-size:.63rem;font-weight:800;color:var(--warn);letter-spacing:.09em;text-transform:uppercase;border:1.5px solid var(--warn);padding:1px 6px;border-radius:2px;vertical-align:middle;}
+  .cflags{display:flex;flex-direction:column;gap:7px;margin:12px 0 15px;}
+  .cflag{position:relative;padding-left:19px;font-size:.89rem;font-weight:600;color:var(--muted);}
+  .cflag::before{content:"";position:absolute;left:0;top:6px;width:9px;height:9px;border-radius:1px;background:var(--muted);}
+  .cflag.warn{color:var(--warn);} .cflag.warn::before{background:var(--warn);}
+  .csteps{display:flex;flex-direction:column;gap:13px;margin-bottom:15px;}
+  .cstep-move{display:inline-block;font-size:.67rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--purple);margin-bottom:5px;}
+  .cstep-line{display:block;font-size:.95rem;line-height:1.45;}
+  .cfrom{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(107,107,118,.5);}
+  .carr{color:var(--lav-dim);margin:0 7px;font-weight:700;}
+  .cto{color:var(--ink);font-weight:600;background-image:linear-gradient(transparent 60%, rgba(185,165,214,.5) 0);background-repeat:no-repeat;background-size:100% 100%;}
+  .cverd{margin-top:4px;padding-top:13px;border-top:1px solid var(--line);font-size:1.0rem;color:var(--ink);}
+  .cverd.bad strong{color:var(--warn);} .cverd.good strong{color:var(--purple);}
+  .cfoot{margin-top:2.8vh;font-size:clamp(1.02rem,1.7vw,1.28rem);font-weight:700;color:var(--ink);max-width:82ch;line-height:1.45;}
+  .cfoot .hl2{color:var(--purple);}
+  @media(max-width:780px){ .ccols{grid-template-columns:1fr;} }
+
+  /* ---- S5 chat comparison ---- */
+  .ask{margin-top:1vh;margin-bottom:2.8vh;max-width:1080px;}
+  .ask-who{display:block;font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--lav-dim);margin-bottom:9px;}
+  .askbub{display:inline-block;background:var(--purple);color:#fff;border-radius:var(--r);padding:14px 20px;font-size:clamp(1.02rem,1.8vw,1.35rem);font-weight:700;box-shadow:0 10px 26px rgba(81,36,122,.28);}
+  .reps{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1080px;width:100%;align-items:start;}
+  .rep{display:flex;flex-direction:column;}
+  .rep-head{margin-bottom:9px;}
+  .rep-name{font-size:.98rem;font-weight:800;letter-spacing:.03em;color:var(--muted);}
+  .rep-name.p{color:var(--purple);}
+  .repbub{border-radius:var(--r);padding:18px 20px;}
+  .plainbub{background:var(--white);border:1px solid var(--line);box-shadow:0 8px 24px rgba(44,19,69,.05);}
+  .coachbub{background:var(--tint);box-shadow:0 8px 24px rgba(44,19,69,.05);}
+  .rline{font-size:.96rem;line-height:1.5;color:var(--ink);min-height:1.3em;margin:0;}
+  .rline + .rline{margin-top:10px;}
+  .rline.ghost{color:var(--muted);font-style:italic;}
+  .rline.ask2{color:var(--purple-dk);font-weight:600;background-image:linear-gradient(transparent 60%, rgba(185,165,214,.45) 0);background-repeat:no-repeat;background-size:100% 100%;padding:2px 0;}
+  .ccite{position:relative;font-size:.86rem;color:var(--muted);line-height:1.4;padding:8px 0;display:inline-block;}
+  .ccite .cstrike{position:absolute;left:0;top:50%;height:2px;background:var(--warn);width:0;}
+  .cnf{display:inline-block;margin-left:8px;font-size:.62rem;font-weight:800;color:var(--warn);letter-spacing:.09em;text-transform:uppercase;border:1.5px solid var(--warn);padding:1px 6px;border-radius:2px;vertical-align:middle;}
+  .notes{display:flex;flex-direction:column;gap:7px;margin-top:14px;}
+  .note{position:relative;padding-left:20px;font-size:.89rem;font-weight:600;line-height:1.35;}
+  .note::before{content:"";position:absolute;left:0;top:6px;width:9px;height:9px;border-radius:1px;}
+  .notes.bad .note{color:var(--warn);} .notes.bad .note::before{background:var(--warn);}
+  .notes.good .note{color:var(--ink);} .notes.good .note::before{background:var(--purple);}
+  .cfoot{margin-top:3vh;font-size:clamp(1.05rem,1.8vw,1.35rem);font-weight:800;color:var(--ink);max-width:84ch;line-height:1.4;}
+  .cfoot .hl2{color:var(--purple);}
+  @media(max-width:780px){ .reps{grid-template-columns:1fr;} }
+
   .nav{position:fixed;right:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:20;}
   .nav a{width:11px;height:11px;border-radius:2px;background:#C9BCDD;transition:all .3s;display:block;}
   .nav a.active{background:var(--purple);transform:scale(1.35);}
@@ -273,42 +354,84 @@
     <p class="travel rv">A method, not a tool – it travels to any writing-based analysis, across courses and disciplines.</p>
   </section>
 
-  <!-- 5 · SEE IT WORK (presenter-controlled) -->
+  <!-- 5 · SEE IT WORK (presenter-controlled chat comparison) -->
   <section class="light" id="s5">
     <div class="kicker rv"><span class="sq"></span><span>See it work</span></div>
     <div class="stage4" id="stage4">
-      <div class="qbub" id="qbub"><span class="qt" id="qt" data-text="Find me two articles for this.">Find me two articles for this.</span><span class="caret" id="caret"></span><span class="who">A first-year student · same question · two AIs</span></div>
-      <div class="duo">
-        <div class="resp plain" id="cardA">
-          <div class="tag">Plain AI</div>
-          <div class="dots" id="dotsA"><i></i><i></i><i></i></div>
-          <p class="say" id="sayA" data-text="Sure – here are two solid ones:">Sure – here are two solid ones:</p>
-          <div class="cite">Chen &amp; Roberts (2019). Trust and accountability in project teams. <em>Journal of Team Dynamics</em>, 14(2), 88–104.<span class="strike"></span><span class="nf">not found</span></div>
-          <div class="cite">Alvarez (2021). Ethical tension in high-stakes group decisions. <em>Management &amp; Society Review</em>, 9(1), 22–41.<span class="strike"></span><span class="nf">not found</span></div>
-          <p class="flagA" id="flagA">Neither exists. AI invented them – and citing them costs real marks.</p>
+      <div class="ask" id="ask">
+        <span class="ask-who">A student, the night before the deadline, asks:</span>
+        <div class="askbub"><span id="askText" data-text="Can you find two good articles for this and write my introduction?">Can you find two good articles for this and write my introduction?</span><span class="caret" id="caret"></span></div>
+      </div>
+      <div class="reps">
+        <div class="rep" id="repL">
+          <div class="rep-head"><span class="rep-name">Plain AI</span></div>
+          <div class="dots" id="dotsL"><i></i><i></i><i></i></div>
+          <div class="repbub plainbub">
+            <p class="rline" id="rlL1" data-text="Sure! Here are two sources and an introduction you can use:">Sure! Here are two sources and an introduction you can use:</p>
+            <div class="ccite" id="citeL">Chen &amp; Roberts (2019). Trust and accountability in project teams. <em>Journal of Team Dynamics</em>, 14(2), 88&ndash;104.<span class="cstrike" id="cstrike"></span><span class="cnf" id="cnf">not found</span></div>
+            <p class="rline ghost" id="rlL2" data-text="&ldquo;This report analyses how communication failures shaped the team's decisions under pressure...&rdquo;">&ldquo;This report analyses how communication failures shaped the team's decisions under pressure...&rdquo;</p>
+          </div>
+          <div class="notes bad" id="notesL">
+            <span class="note">wrote the graded work for you</span>
+            <span class="note">invented a source that doesn't exist</span>
+            <span class="note">generic &ndash; could be anyone's</span>
+          </div>
         </div>
-        <div class="resp coachc" id="cardB">
-          <div class="tag">With the coach</div>
-          <div class="dots" id="dotsB"><i></i><i></i><i></i></div>
-          <p class="say" id="sayB" data-text="I won't hand you articles – finding them is half of what's marked here.">I won't hand you articles – finding them is half of what's marked here.</p>
-          <p class="coachq"><span class="hl" id="hl">&ldquo;Where have you looked so far – and what's not working?&rdquo;</span></p>
-          <p class="coachnote" id="coachnote">Then it walks you through searching – and judging – the evidence yourself.</p>
+        <div class="rep" id="repR">
+          <div class="rep-head"><span class="rep-name p">With the coach</span></div>
+          <div class="dots" id="dotsR"><i></i><i></i><i></i></div>
+          <div class="repbub coachbub">
+            <p class="rline" id="rlR1" data-text="I won't find the articles or write the intro &ndash; those are the parts you're marked on. But I'll get you moving faster than a blank page:">I won't find the articles or write the intro &ndash; those are the parts you're marked on. But I'll get you moving faster than a blank page:</p>
+            <p class="rline ask2" id="rlR2" data-text="What's the one management decision your analysis is really about? Tell me that, and we'll turn it into a searchable question and a sharper opening &ndash; in your words.">What's the one management decision your analysis is really about? Tell me that, and we'll turn it into a searchable question and a sharper opening &ndash; in your words.</p>
+          </div>
+          <div class="notes good" id="notesR">
+            <span class="note">the marks stay yours &ndash; you write it</span>
+            <span class="note">real sources you can defend</span>
+            <span class="note">builds the skill, not the shortcut</span>
+          </div>
         </div>
       </div>
-      <div class="foot4" id="foot4">
-        <p class="f1">Most AI agrees, and hands over.</p>
-        <p class="f2">The coach tells the truth – and hands the thinking back.</p>
-        <p class="f3">That's why the change matters: the work, the marks, and the learning stay the student's.</p>
-      </div>
+      <p class="cfoot" id="cfoot">Same request. One AI does the work <span class="hl2">for</span> you &ndash; the other makes sure you can still do it <span class="hl2">yourself</span>.</p>
       <div class="s4row">
-        <div class="cue" id="cue">Click – verify those citations</div>
+        <div class="cue" id="cue">Click &ndash; ask plain AI</div>
         <button class="replay" id="replay" type="button">Replay</button>
       </div>
     </div>
   </section>
 
-  <!-- 6 · WHY IT MATTERS -->
+  <!-- 6 · IT DOESN'T JUST SAY NO -->
   <section class="light" id="s6">
+    <div class="kicker rv"><span class="sq"></span><span>Beyond the gate</span></div>
+    <div class="statement rv">It doesn't just say no – it makes your <span class="p">thinking</span> sharper.</div>
+    <div class="chat">
+      <div class="turn stu rv"><div class="bub s">&ldquo;The main problem was poor communication, so I'll analyse it as a Planning problem.&rdquo;</div></div>
+      <div class="turn co rv"><div class="movelab">makes it specific</div><div class="bub c">&ldquo;Poor communication&rdquo; is too broad for a strong analysis. How exactly did it create a planning problem – was critical information not shared before a decision was made?</div></div>
+      <div class="turn stu rv"><div class="bub s">&ldquo;People were selfish and didn't share what they knew.&rdquo;</div></div>
+      <div class="turn co rv"><div class="movelab">separates fact from motive</div><div class="bub c">Careful with &ldquo;selfish&rdquo; – that's a claim about motives you can't evidence. A defensible line: members held unique information that wasn't pooled before the decision. Which moment was that?</div></div>
+    </div>
+    <p class="proofcap rv">Two turns in, a vague complaint became a <strong>specific, defensible management claim</strong> – reasoned and written by the student.</p>
+  </section>
+
+  <!-- 7 · AND IT HOLDS -->
+  <section class="light" id="s7">
+    <div class="kicker rv"><span class="sq"></span><span>And it holds</span></div>
+    <div class="statement rv">Pushed hard, it doesn't <span class="p">break</span>.</div>
+    <div class="redteam">
+      <div class="rt-head rv"><span class="sq"></span>Red-teamed through 8+ attack patterns:</div>
+      <div class="rt-pills">
+        <span class="rt-pill rv">write my intro</span>
+        <span class="rt-pill rv">just one topic sentence</span>
+        <span class="rt-pill rv">translate my draft</span>
+        <span class="rt-pill rv">give me the full outline</span>
+        <span class="rt-pill rv">which theory should I pick?</span>
+        <span class="rt-pill rv">fix my APA reference</span>
+      </div>
+      <p class="rt-foot rv">Every hard boundary held – even under deadline pressure. <strong>The coaching got better, not weaker.</strong></p>
+    </div>
+  </section>
+
+  <!-- 8 · WHY IT MATTERS -->
+  <section class="light" id="s8">
     <div class="kicker rv"><span class="sq"></span><span>Why it matters</span></div>
     <div class="statement rv">We're not policing AI.<br><span class="p" style="font-style:normal;">We're building judgement.</span></div>
     <p class="lead rv">As AI gets better at the writing and the analysis, the scarce human capability is judgement – deciding what matters, weighing the ethics, making the call. That's the core of management.</p>
@@ -321,8 +444,8 @@
     <div class="panel rv"><span class="p">Human-centred education</span> – with AI as the pressure, not the shortcut.</div>
   </section>
 
-  <!-- 7 · CLOSING -->
-  <section class="dark" id="s7">
+  <!-- 9 · CLOSING -->
+  <section class="dark" id="s9">
     <h1 class="rv">This is step one.</h1>
     <p class="sub rv">We're piloting it with colleagues now.</p>
     <p class="sub rv" style="color:#fff;margin-top:2.2vh;">If your assessment is about thinking – not just producing – <strong>happy to have a chat.</strong></p>
@@ -334,283 +457,294 @@
 <nav class="nav" id="nav"></nav>
 <div class="hint" id="hint">scroll · arrow keys</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
-  // Blocking fallback: if cdnjs or SRI fails, load the same GSAP version before continuing.
-  if (!window.gsap) {
-    document.write('<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"><\/script>');
-  }
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-  // Blocking fallback keeps the following animation code from running too early.
-  if (!window.ScrollTrigger) {
-    document.write('<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"><\/script>');
-  }
-</script>
-<script>
-  const deck = document.getElementById('deck');
-  const sections = Array.from(deck.querySelectorAll('section'));
-  const nav = document.getElementById('nav');
-  const hint = document.getElementById('hint');
-  const $ = id => document.getElementById(id);
+/* v8 - surgical fix on the empirically working v5:
+   - GSAP loads exactly as in v5 (static tag, proven to load in this environment).
+   - ONLY the triggering changed: ScrollTrigger (unreliable inside scroll-snap) is
+     replaced by IntersectionObserver + a manual visibility poll as belt-and-braces.
+   - S5 easings softened (no overshoot, no shake, labels horizontal).
+   - Any animation error triggers rescue(): everything becomes visible, never a blank deck. */
+(function(){
+  var deck = document.getElementById('deck');
+  var sections = Array.prototype.slice.call(deck.querySelectorAll('section'));
+  var nav = document.getElementById('nav');
+  var hint = document.getElementById('hint');
+  var $ = function(id){ return document.getElementById(id); };
 
-  sections.forEach((s) => {
-    const a = document.createElement('a');
-    a.href = '#' + s.id;
-    a.addEventListener('click', e => { e.preventDefault(); s.scrollIntoView({behavior:'smooth'}); });
+  sections.forEach(function(sec){
+    var a = document.createElement('a');
+    a.href = '#' + sec.id;
+    a.addEventListener('click', function(e){ e.preventDefault(); sec.scrollIntoView({behavior:'smooth'}); });
     nav.appendChild(a);
   });
-  const dots = Array.from(nav.children);
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(en => {
-      if (en.isIntersecting) {
-        const idx = sections.indexOf(en.target);
-        dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+  var dots = Array.prototype.slice.call(nav.children);
+  var dotIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){
+        var idx = sections.indexOf(en.target);
+        dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
       }
     });
   }, { root: deck, threshold: 0.55 });
-  sections.forEach(s => io.observe(s));
+  sections.forEach(function(sec){ dotIO.observe(sec); });
 
-  let scrolled = false;
-  deck.addEventListener('scroll', () => { if (!scrolled){ scrolled = true; hint.classList.add('hide'); } }, {passive:true});
+  var scrolled = false;
+  deck.addEventListener('scroll', function(){ if(!scrolled){ scrolled = true; hint.classList.add('hide'); } }, {passive:true});
 
-  function current(){ let best=0,bd=1e9; sections.forEach((s,i)=>{const d=Math.abs(s.getBoundingClientRect().top); if(d<bd){bd=d;best=i;}}); return best; }
-  document.addEventListener('keydown', e => {
-    if (['ArrowDown','ArrowRight','PageDown'].includes(e.key)) { e.preventDefault(); sections[Math.min(current()+1,sections.length-1)].scrollIntoView({behavior:'smooth'}); }
-    if (['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); sections[Math.max(current()-1,0)].scrollIntoView({behavior:'smooth'}); }
+  function current(){ var best=0,bd=1e9; sections.forEach(function(sec,i){ var d=Math.abs(sec.getBoundingClientRect().top); if(d<bd){bd=d;best=i;} }); return best; }
+  document.addEventListener('keydown', function(e){
+    if (['ArrowDown','ArrowRight','PageDown'].indexOf(e.key)>-1){ e.preventDefault(); sections[Math.min(current()+1,sections.length-1)].scrollIntoView({behavior:'smooth'}); }
+    if (['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key)>-1){ e.preventDefault(); sections[Math.max(current()-1,0)].scrollIntoView({behavior:'smooth'}); }
   });
 
-  // ---- GSAP enhancement (no GSAP / no net: the page simply shows the finished state) ----
-  // Presentation deck: motion is ON by default. Append ?reduce-motion=1 only when a static version is required.
-  const reduce = new URLSearchParams(window.location.search).has('reduce-motion');
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-    const INST = reduce;
+  // ---------------- animation layer ----------------
+  if (!window.gsap){ console.warn('[deck] GSAP not loaded - static view'); return; }
+  console.log('[deck] GSAP ' + gsap.version + ' loaded');
 
-    if (!INST) {
-      // generic rise-in
-      sections.forEach((sec, secIndex) => {
-        const els = sec.querySelectorAll('.rv');
-        if (!els.length) return;
-        gsap.set(els, { autoAlpha: 0, y: 30 });
-        const reveal = () => gsap.to(els, { autoAlpha: 1, y: 0, duration: .85, stagger: .13, ease: 'power3.out' });
-        if (secIndex === 0) {
-          // The first slide is already inside the scroller at startup; reveal it explicitly.
-          requestAnimationFrame(reveal);
-        } else {
-          ScrollTrigger.create({
-            trigger: sec, scroller: deck, start: 'top 62%', once: true, invalidateOnRefresh: true,
-            onEnter: reveal
-          });
-        }
-      });
+  // This is a live presentation deck: it always plays its motion, regardless of the
+  // machine's 'reduce motion' setting (which would otherwise skip the key animations).
+  var INST = false;
 
-      // ---- premise visual sequence (hand-rolled, no MotionPath dependency) ----
-      const hp = $('humanPath');
-      const arcs = gsap.utils.toArray('.arc');
-      const nodes = gsap.utils.toArray('.node');
-      const ripples = gsap.utils.toArray('.ripple');
-      const stns = gsap.utils.toArray('.stn');
-      const feet = gsap.utils.toArray('.foot');
-      const aiBand = $('aiBand'), vLegend = $('vLegend'), vCap = $('vCap');
-      const drawHead = $('drawHead'), signal = $('signal');
-      const hpLen = hp.getTotalLength();
-      const nodeX = nodes.map(n => +n.dataset.x);
-      const popNode = (idx) => gsap.fromTo(nodes[idx], { scale: 1 }, { scale: 1.5, duration: .18, yoyo: true, repeat: 1, transformOrigin: '50% 50%', ease: 'power2.out' });
-      const rippleNode = (idx) => gsap.fromTo(ripples[idx], { opacity: .7, scale: 1, transformOrigin: '50% 50%' }, { opacity: 0, scale: 3, duration: .9, ease: 'power2.out' });
+  function rescue(err){
+    console.error('[deck] animation error - revealing everything', err);
+    try{
+      var show = document.querySelectorAll('.rv, #nest, #vLegend, #vCap, .stn, .node, .foot, #aiBand, .ask, .rep, .ccite, .note, .cfoot, .cnf');
+      Array.prototype.forEach.call(show, function(el){ el.style.opacity=1; el.style.visibility='visible'; el.style.transform='none'; });
+      Array.prototype.forEach.call(document.querySelectorAll('.rline, #askText'), function(el){ el.style.visibility='visible'; el.style.opacity=1; });
+      var hpx=$('humanPath'); if(hpx){ hpx.style.strokeDasharray='none'; hpx.style.strokeDashoffset='0'; }
+      Array.prototype.forEach.call(document.querySelectorAll('.arc'), function(a){ a.style.strokeDasharray='none'; a.style.strokeDashoffset='0'; });
+      Array.prototype.forEach.call(document.querySelectorAll('.strike, .cstrike'), function(st){ st.style.width='100%'; });
+    }catch(e2){}
+  }
 
-      gsap.set(hp, { strokeDasharray: hpLen, strokeDashoffset: hpLen });
-      arcs.forEach(a => { const L = a.getTotalLength(); gsap.set(a, { strokeDasharray: L, strokeDashoffset: L }); });
-      gsap.set(nodes, { scale: 0, transformOrigin: '50% 50%' });
-      gsap.set(stns, { autoAlpha: 0 });
-      gsap.set([aiBand, ...feet], { autoAlpha: 0 });
-      gsap.set([vLegend, vCap], { autoAlpha: 0, y: 14 });
+  try{
 
-      ScrollTrigger.create({
-        trigger: '#s2', scroller: deck, start: 'top 60%', once: true,
-        onEnter: () => {
-          const drawn = { t: 0 };
-          const popped = new Set();
-          const tl = gsap.timeline();
-          tl.to(drawHead, { opacity: 1, duration: .3 }, 0)
-            .to(drawn, {
-              t: 1, duration: 1.8, ease: 'power1.inOut',
-              onUpdate: () => {
-                const len = drawn.t * hpLen;
-                gsap.set(hp, { strokeDashoffset: hpLen - len });
-                const p = hp.getPointAtLength(len);
-                drawHead.setAttribute('cx', p.x); drawHead.setAttribute('cy', p.y);
-                nodeX.forEach((nx, k) => {
-                  if (!popped.has(k) && p.x >= nx) {
-                    popped.add(k);
-                    gsap.fromTo(nodes[k], { scale: 0 }, { scale: 1, duration: .42, ease: 'back.out(2.4)' });
-                    gsap.fromTo(stns[k], { autoAlpha: 0, y: 6 }, { autoAlpha: 1, y: 0, duration: .42 });
-                  }
-                });
-              }
-            }, 0)
-            .to(drawHead, { opacity: 0, duration: .4 }, '>-.1')
-            .to(aiBand, { autoAlpha: .3, duration: .4 }, '-=.5')
-            .to(feet, { autoAlpha: 1, duration: .3, stagger: .08 }, '<')
-            .to(arcs, { strokeDashoffset: 0, duration: .6, stagger: .12, ease: 'power2.out' }, '<+=.05')
-            .to(vLegend, { autoAlpha: 1, y: 0, duration: .5 }, '+=.1')
-            .to(vCap, { autoAlpha: 1, y: 0, duration: .55 }, '-=.2')
-            .call(startLife);
+  // ---- refs ----
+  var hp = $('humanPath'), drawHead = $('drawHead'), signal = $('signal');
+  var arcs = gsap.utils.toArray('.arc');
+  var nodes = gsap.utils.toArray('.node');
+  var ripples = gsap.utils.toArray('.ripple');
+  var stns = gsap.utils.toArray('.stn');
+  var feet = gsap.utils.toArray('.foot');
+  var aiBand = $('aiBand'), vLegend = $('vLegend'), vCap = $('vCap');
+  var hpLen = hp.getTotalLength();
+  var nodeX = nodes.map(function(n){ return +n.dataset.x; });
 
-          function startLife(){
-            gsap.to(arcs, { opacity: .4, duration: 1.7, yoyo: true, repeat: -1, stagger: .3, ease: 'sine.inOut' });
-            gsap.set(signal, { opacity: .95 });
-            const sig = { t: 0 };
-            let prevX = -1, armed = new Set([0,1,2,3,4]);
-            gsap.to(sig, {
-              t: 1, duration: 5.5, repeat: 0, ease: 'none',
-              onRepeat: () => { prevX = -1; armed = new Set([0,1,2,3,4]); },
-              onUpdate: () => {
-                const p = hp.getPointAtLength(sig.t * hpLen);
-                signal.setAttribute('cx', p.x); signal.setAttribute('cy', p.y);
-                nodeX.forEach((nx, k) => { if (armed.has(k) && prevX >= 0 && prevX < nx && p.x >= nx) { armed.delete(k); rippleNode(k); popNode(k); } });
-                prevX = p.x;
-              }
-            });
+  var nest = $('nest'), nestCard = $('nestCard'), nestLip = $('nestLip'), nestCap = $('nestCap');
+
+  var stage4El = $('stage4');
+  var ask = $('ask'), askText = $('askText'), caret = $('caret');
+  var repL = $('repL'), dotsL = $('dotsL'), rlL1 = $('rlL1'), rlL2 = $('rlL2');
+  var citeL = $('citeL'), cstrike = $('cstrike'), cnf = $('cnf'), notesL = $('notesL');
+  var repR = $('repR'), dotsR = $('dotsR'), rlR1 = $('rlR1'), rlR2 = $('rlR2'), notesR = $('notesR');
+  var cfoot = $('cfoot');
+  var notesLc = notesL.children, notesRc = notesR.children;
+  var cue = $('cue'), replayBtn = $('replay');
+
+  // ---- initial states ----
+  if (!INST){
+    sections.forEach(function(sec){ var els = sec.querySelectorAll('.rv'); if (els.length) gsap.set(els, { autoAlpha:0, y:30 }); });
+    gsap.set(hp, { strokeDasharray:hpLen, strokeDashoffset:hpLen });
+    arcs.forEach(function(a){ var L=a.getTotalLength(); gsap.set(a, { strokeDasharray:L, strokeDashoffset:L }); });
+    gsap.set(nodes, { scale:0, transformOrigin:'50% 50%' });
+    gsap.set(stns, { autoAlpha:0 });
+    gsap.set([aiBand].concat(feet), { autoAlpha:0 });
+    gsap.set([vLegend, vCap], { autoAlpha:0, y:14 });
+    gsap.set(nest, { autoAlpha:0, scale:.98, transformOrigin:'50% 60%' });
+    gsap.set(nestCard, { autoAlpha:0, y:22 });
+    gsap.set(nestLip, { autoAlpha:0 });
+    gsap.set(nestCap, { autoAlpha:0, y:14 });
+  }
+  function demoInitial(){
+    gsap.set(ask, { autoAlpha:0, y:12 });
+    gsap.set([repL, repR], { autoAlpha:0, y:16 });
+    gsap.set(citeL, { autoAlpha:0, opacity:0 });
+    gsap.set(cstrike, { width:0 });
+    gsap.set(cnf, { autoAlpha:0, scale:.85, transformOrigin:'50% 50%' });
+    gsap.set(notesLc, { autoAlpha:0, x:-8 });
+    gsap.set(notesRc, { autoAlpha:0, x:-8 });
+    gsap.set(cfoot, { autoAlpha:0, y:12 });
+    dotsL.style.display='none'; dotsR.style.display='none';
+    [askText, rlL1, rlL2, rlR1, rlR2].forEach(function(el){ el.style.visibility='hidden'; });
+  }
+  demoInitial();
+
+  // ---- helpers ----
+  var tw = function(t, v){ return new Promise(function(r){
+    var vv = {}; for (var k in v) vv[k] = v[k];
+    vv.duration = INST ? 0 : (v.duration != null ? v.duration : .5);
+    vv.onComplete = r;
+    gsap.to(t, vv);
+  }); };
+  var wait = function(ms){ return new Promise(function(r){ setTimeout(r, INST ? 0 : ms); }); };
+  var typeText = function(el, speed){ return new Promise(function(res){
+    var full = el.dataset.text; el.style.visibility='visible';
+    if (INST){ el.textContent = full; return res(); }
+    el.textContent=''; var i=0;
+    var t=setInterval(function(){ el.textContent = full.slice(0,++i); if(i>=full.length){ clearInterval(t); res(); } }, speed||28);
+  }); };
+
+  function revealRV(sec){
+    if (INST) return;
+    var els = sec.querySelectorAll('.rv');
+    if (els.length) gsap.to(els, { autoAlpha:1, y:0, duration:.85, stagger:.13, ease:'power3.out' });
+  }
+
+  // ---- premise ----
+  var premiseRan = false;
+  function runPremise(){
+    if (premiseRan || INST) return; premiseRan = true;
+    console.log('[deck] premise start');
+    var drawn = { t:0 }, popped = {};
+    var tl = gsap.timeline();
+    tl.to(drawHead, { opacity:1, duration:.3 }, 0)
+      .to(drawn, { t:1, duration:1.9, ease:'power1.inOut', onUpdate:function(){
+          var len = drawn.t * hpLen;
+          gsap.set(hp, { strokeDashoffset: hpLen - len });
+          var p = hp.getPointAtLength(len);
+          drawHead.setAttribute('cx', p.x); drawHead.setAttribute('cy', p.y);
+          for (var k=0;k<nodeX.length;k++){
+            if (!popped[k] && p.x >= nodeX[k]){
+              popped[k] = true;
+              gsap.fromTo(nodes[k], { scale:0 }, { scale:1, duration:.5, ease:'power3.out' });
+              gsap.fromTo(stns[k], { autoAlpha:0, y:6 }, { autoAlpha:1, y:0, duration:.5, ease:'power2.out' });
+            }
           }
-        }
+        } }, 0)
+      .to(drawHead, { opacity:0, duration:.5 }, '>-.1')
+      .to(aiBand, { autoAlpha:.3, duration:.5 }, '-=.5')
+      .to(feet, { autoAlpha:1, duration:.4, stagger:.08 }, '<')
+      .to(arcs, { strokeDashoffset:0, duration:.7, stagger:.12, ease:'power2.out' }, '<+=.05')
+      .to(vLegend, { autoAlpha:1, y:0, duration:.55, ease:'power2.out' }, '+=.1')
+      .to(vCap, { autoAlpha:1, y:0, duration:.6, ease:'power2.out' }, '-=.2')
+      .call(startLife);
+
+    function startLife(){
+      // arcs settle to a calm static state (no perpetual motion - the page comes to rest)
+      gsap.to(arcs, { opacity:.7, duration:1.0, ease:'sine.out' });
+      gsap.set(signal, { opacity:0 });
+      var sig = { t:0 }, prevX = -1, armed = [true,true,true,true,true];
+      gsap.to(signal, { opacity:.9, duration:.35 });
+      gsap.to(sig, { t:1, duration:3.4, ease:'power1.inOut', repeat:0, delay:.2,
+        onUpdate: function(){
+          var p = hp.getPointAtLength(sig.t * hpLen);
+          signal.setAttribute('cx', p.x); signal.setAttribute('cy', p.y);
+          for (var k=0;k<nodeX.length;k++){
+            if (armed[k] && prevX>=0 && prevX<nodeX[k] && p.x>=nodeX[k]){
+              armed[k] = false;
+              gsap.fromTo(ripples[k], { opacity:.6, scale:1, transformOrigin:'50% 50%' }, { opacity:0, scale:2.8, duration:1.0, ease:'power2.out' });
+              gsap.fromTo(nodes[k], { scale:1 }, { scale:1.26, duration:.32, yoyo:true, repeat:1, transformOrigin:'50% 50%', ease:'power2.out' });
+            }
+          }
+          prevX = p.x;
+        },
+        onComplete: function(){ gsap.to(signal, { opacity:0, duration:.6, delay:.3 }); } });
+    }
+  }
+
+  // ---- nest ----
+  var nestRan = false;
+  function runNest(){
+    if (nestRan || INST) return; nestRan = true;
+    gsap.timeline()
+      .to(nest, { autoAlpha:1, scale:1, duration:.65, ease:'power3.out' }, '+=.3')
+      .to(nestCard, { autoAlpha:1, y:0, duration:.6, ease:'power3.out' }, '-=.15')
+      .to(nestLip, { autoAlpha:1, duration:.5 }, '-=.1')
+      .to(nestCap, { autoAlpha:1, y:0, duration:.5, ease:'power2.out' }, '+=.1');
+  }
+
+  // ---- demo: presenter-controlled chat (same request, two responses) ----
+  function act1(){   // the shared request
+    return tw(ask, { autoAlpha:1, y:0, duration:.5, ease:'power3.out' })
+      .then(function(){ caret.classList.add('on'); return typeText(askText, 30); })
+      .then(function(){ caret.classList.remove('on'); });
+  }
+  function act2(){   // Plain AI answers
+    return tw(repL, { autoAlpha:1, y:0, duration:.5, ease:'power3.out' })
+      .then(function(){ dotsL.style.display='flex'; return wait(850); })
+      .then(function(){ dotsL.style.display='none'; return typeText(rlL1, 20); })
+      .then(function(){ return tw(citeL, { autoAlpha:1, opacity:1, duration:.35 }); })
+      .then(function(){ return tw(cstrike, { width:'100%', duration:.5, ease:'power2.inOut' }); })
+      .then(function(){ gsap.to(citeL, { opacity:.5, duration:.4 }); return tw(cnf, { autoAlpha:1, scale:1, duration:.4, ease:'power2.out' }); })
+      .then(function(){ return typeText(rlL2, 16); })
+      .then(function(){
+        var pr = Promise.resolve();
+        Array.prototype.forEach.call(notesLc, function(n){ pr = pr.then(function(){ return tw(n, { autoAlpha:1, x:0, duration:.38, ease:'power2.out' }); }); });
+        return pr;
       });
-
-      // ---- nest sequence ----
-      const nest = $('nest'), nestCard = $('nestCard'), nestLip = $('nestLip'), nestCap = $('nestCap');
-      gsap.set(nest, { autoAlpha: 0, scale: .975, transformOrigin: '50% 60%' });
-      gsap.set(nestCard, { autoAlpha: 0, y: 26 });
-      gsap.set(nestLip, { autoAlpha: 0 });
-      gsap.set(nestCap, { autoAlpha: 0, y: 14 });
-      ScrollTrigger.create({
-        trigger: '#s4', scroller: deck, start: 'top 55%', once: true,
-        onEnter: () => {
-          gsap.timeline()
-            .to(nest, { autoAlpha: 1, scale: 1, duration: .6, ease: 'power3.out' }, '+=.35')
-            .to(nestCard, { autoAlpha: 1, y: 0, duration: .65, ease: 'back.out(1.4)' }, '-=.15')
-            .to(nestLip, { autoAlpha: 1, duration: .5 }, '-=.1')
-            .to(nestCap, { autoAlpha: 1, y: 0, duration: .5 }, '+=.1');
-        }
+  }
+  function act3(){   // the coach answers
+    return tw(repR, { autoAlpha:1, y:0, duration:.5, ease:'power3.out' })
+      .then(function(){ dotsR.style.display='flex'; return wait(850); })
+      .then(function(){ dotsR.style.display='none'; return typeText(rlR1, 16); })
+      .then(function(){ return typeText(rlR2, 16); })
+      .then(function(){
+        var pr = Promise.resolve();
+        Array.prototype.forEach.call(notesRc, function(n){ pr = pr.then(function(){ return tw(n, { autoAlpha:1, x:0, duration:.38, ease:'power2.out' }); }); });
+        return pr;
       });
-    }
+  }
+  function act4(){   // the difference
+    return tw(cfoot, { autoAlpha:1, y:0, duration:.6, ease:'power3.out' });
+  }
+  var acts = [act1, act2, act3, act4];
 
-    // ---- presenter-controlled four acts ----
-    const stage4El = $('stage4');
-    const qbub = $('qbub'), qt = $('qt'), caret = $('caret');
-    const cardA = $('cardA'), cardB = $('cardB');
-    const dotsA = $('dotsA'), dotsB = $('dotsB');
-    const sayA = $('sayA'), sayB = $('sayB');
-    const cites = cardA.querySelectorAll('.cite');
-    const strikes = cardA.querySelectorAll('.strike');
-    const nfs = cardA.querySelectorAll('.nf');
-    const flagA = $('flagA'), hl = $('hl'), coachnote = $('coachnote');
-    const footEls = document.querySelectorAll('#foot4 p');
-    const cue = $('cue'), replayBtn = $('replay');
-
-    gsap.set(qbub, { autoAlpha: 0, y: 16, scale: .97 });
-    gsap.set([cardA, cardB], { autoAlpha: 0, y: 28 });
-    gsap.set(cites, { autoAlpha: 0, x: -12 });
-    gsap.set(strikes, { width: 0 });
-    gsap.set(nfs, { autoAlpha: 0, scale: .4, rotate: -14, transformOrigin: '50% 50%' });
-    gsap.set([flagA, coachnote], { autoAlpha: 0 });
-    gsap.set(hl, { backgroundSize: '0% 100%' });
-    gsap.set(footEls, { autoAlpha: 0, y: 16 });
-    sayA.style.visibility = 'hidden'; sayB.style.visibility = 'hidden';
-
-    const tw = (t, v) => new Promise(r => gsap.to(t, { ...v, duration: INST ? 0 : (v.duration ?? .5), onComplete: r }));
-    const wait = ms => new Promise(r => setTimeout(r, INST ? 0 : ms));
-    const typeText = (el, speed = 24) => new Promise(res => {
-      const full = el.dataset.text;
-      el.style.visibility = 'visible';
-      if (INST) { el.textContent = full; return res(); }
-      el.textContent = '';
-      let i = 0;
-      const t = setInterval(() => { el.textContent = full.slice(0, ++i); if (i >= full.length) { clearInterval(t); res(); } }, speed);
-    });
-
-    let stage = 0, busy = false, started = false;
-    const cues = { 1: 'Click – verify those citations', 2: 'Click – now with the coach', 3: 'Click – why this matters' };
-    function setCue(n){ if (cues[n]) { cue.textContent = cues[n]; cue.style.display = 'inline-flex'; stage4El.classList.add('clickable'); } }
-    function hideCue(){ cue.style.display = 'none'; stage4El.classList.remove('clickable'); }
-
-    async function act1(){
-      await tw(qbub, { autoAlpha: 1, y: 0, scale: 1, duration: .45, ease: 'back.out(1.6)' });
-      caret.classList.add('on');
-      await typeText(qt, 30);
-      caret.classList.remove('on');
-      gsap.set(cardA, { scale: .98 });
-      await tw(cardA, { autoAlpha: 1, y: 0, scale: 1, duration: .5, ease: 'back.out(1.3)' });
-      dotsA.style.display = 'flex'; await wait(850); dotsA.style.display = 'none';
-      await typeText(sayA);
-      for (const c of cites) { await tw(c, { autoAlpha: 1, x: 0, duration: .4 }); }
-    }
-    async function act2(){
-      for (let i = 0; i < strikes.length; i++) {
-        await tw(strikes[i], { width: '100%', duration: .45, ease: 'power2.inOut' });
-        gsap.fromTo(cites[i], { x: 0 }, { x: 2.5, duration: .05, repeat: 5, yoyo: true, ease: 'none' });
-        gsap.to(cites[i], { opacity: .5, duration: .4, delay: .12 });
-        await tw(nfs[i], { autoAlpha: 1, scale: 1, rotate: -3, duration: .32, ease: 'back.out(3)' });
-      }
-      await tw(flagA, { autoAlpha: 1, duration: .45 });
-    }
-    async function act3(){
-      gsap.set(cardB, { scale: .97 });
-      await tw(cardB, { autoAlpha: 1, y: 0, scale: 1, duration: .55, ease: 'back.out(1.4)' });
-      dotsB.style.display = 'flex'; await wait(800); dotsB.style.display = 'none';
-      await typeText(sayB);
-      await tw(hl, { backgroundSize: '100% 100%', duration: .7, ease: 'power2.out' });
-      await tw(coachnote, { autoAlpha: 1, duration: .4 });
-    }
-    async function act4(){
-      for (const f of footEls) { await tw(f, { autoAlpha: 1, y: 0, duration: .45 }); }
-    }
-    const acts = [act1, act2, act3, act4];
-
-    async function runStage(n){
-      busy = true; hideCue();
-      await acts[n - 1]();
+  var stage = 0, busy = false, demoStarted = false;
+  var cues = { 1:'Click \u2013 ask plain AI', 2:'Click \u2013 now ask the coach', 3:'Click \u2013 the difference' };
+  function setCue(n){ if (cues[n]){ cue.textContent = cues[n]; cue.style.display = 'inline-flex'; stage4El.classList.add('clickable'); } }
+  function hideCue(){ cue.style.display = 'none'; stage4El.classList.remove('clickable'); }
+  function runStage(n){
+    busy = true; hideCue();
+    acts[n-1]().then(function(){
       busy = false; stage = n;
       if (n < 4) setCue(n); else replayBtn.style.display = 'inline-block';
-    }
-
-    ScrollTrigger.create({
-      trigger: '#s5', scroller: deck, start: 'top 55%', once: true,
-      onEnter: () => { if (!started) { started = true; runStage(1); } }
-    });
-
-    stage4El.addEventListener('click', (e) => {
-      if (e.target === replayBtn) return;
-      if (!busy && stage >= 1 && stage < 4) runStage(stage + 1);
-    });
-    replayBtn.addEventListener('click', () => {
-      if (busy) return;
-      replayBtn.style.display = 'none'; hideCue();
-      gsap.set(qbub, { autoAlpha: 0, y: 16, scale: .97 });
-      gsap.set([cardA, cardB], { autoAlpha: 0, y: 28 });
-      gsap.set(cites, { autoAlpha: 0, x: -12 });
-      gsap.set(strikes, { width: 0 });
-      gsap.set(nfs, { autoAlpha: 0, scale: .4, rotate: -14, transformOrigin: '50% 50%' });
-      gsap.set([flagA, coachnote], { autoAlpha: 0 });
-      gsap.set(hl, { backgroundSize: '0% 100%' });
-      gsap.set(footEls, { autoAlpha: 0, y: 16 });
-      sayA.style.visibility = 'hidden'; sayB.style.visibility = 'hidden';
-      stage = 0; runStage(1);
-    });
-
-    // Recalculate custom-scroller geometry after the DOM, viewport and web font settle.
-    const refreshMotion = () => {
-      ScrollTrigger.refresh(true);
-      ScrollTrigger.update();
-    };
-    requestAnimationFrame(refreshMotion);
-    window.addEventListener('load', refreshMotion, { once: true });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refreshMotion);
-    console.info('[MGTS1301 v5] GSAP', gsap.version, '| ScrollTrigger', ScrollTrigger.version, '| triggers', ScrollTrigger.getAll().length);
-  } else {
-    // Keep the original graceful static fallback, but make the cause visible in DevTools.
-    console.error('[MGTS1301 v5] Animation libraries did not load. The deck is showing its static fallback state.');
+    }).catch(function(err){ rescue(err); });
   }
+  function startDemo(){ if (demoStarted) return; demoStarted = true; console.log('[deck] demo start'); runStage(1); }
+
+  stage4El.addEventListener('click', function(e){
+    if (e.target === replayBtn) return;
+    if (!demoStarted){ startDemo(); return; }
+    if (!busy && stage >= 1 && stage < 4) runStage(stage + 1);
+  });
+  replayBtn.addEventListener('click', function(){
+    if (busy) return;
+    replayBtn.style.display = 'none'; hideCue();
+    demoInitial();
+    stage = 0; runStage(1);
+  });
+
+  // ---- triggering: IntersectionObserver + manual poll (belt and braces) ----
+  var fired = {};
+  function enterSection(sec){
+    var id = sec.id;
+    if (fired[id]) return; fired[id] = true;
+    console.log('[deck] enter ' + id);
+    revealRV(sec);
+    if (id === 's2') runPremise();
+    else if (id === 's4') runNest();
+    else if (id === 's5') startDemo();
+  }
+  var animIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting) enterSection(en.target); });
+  }, { root: deck, threshold: 0.4 });
+  sections.forEach(function(sec){ animIO.observe(sec); });
+
+  function poll(){
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    sections.forEach(function(sec){
+      var r = sec.getBoundingClientRect();
+      var vis = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+      if (vis > vh * 0.5) enterSection(sec);
+    });
+  }
+  deck.addEventListener('scroll', function(){ requestAnimationFrame(poll); }, {passive:true});
+  setInterval(poll, 900);
+  poll();
+
+  } catch(err){ rescue(err); }
+})();
 </script>
 </body>
 </html>
