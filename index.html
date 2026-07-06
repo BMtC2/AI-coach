@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +63,18 @@
   }
   .panel .p{color:var(--purple);}
 
-  /* ---- S3 nested composition ---- */
+  /* ---- premise visual ---- */
+  .viz{margin-top:4vh;max-width:1120px;width:100%;}
+  .viz svg{width:100%;height:auto;display:block;}
+  .stn{font-family:'Figtree',sans-serif;font-size:15px;font-weight:700;letter-spacing:.14em;fill:var(--muted);text-anchor:middle;}
+  .vlegend{display:flex;flex-wrap:wrap;gap:26px;margin-top:2.2vh;}
+  .vlegend .chip{display:flex;align-items:center;gap:9px;font-size:.98rem;font-weight:700;color:var(--ink);}
+  .vlegend .csq{width:11px;height:11px;border-radius:1px;background:var(--purple);flex:none;}
+  .vlegend .csq.l{background:var(--lav);}
+  .vcap{margin-top:3vh;}
+  .vcap strong{color:var(--purple);}
+
+  /* ---- nested composition ---- */
   .nest{
     margin-top:5vh;max-width:940px;
     background:var(--purple-dk);border-radius:var(--r);
@@ -82,7 +94,7 @@
   .nestcap strong{color:var(--purple);}
   .travel{margin-top:2.6vh;font-size:clamp(1.02rem,1.7vw,1.22rem);font-weight:800;color:var(--ink);}
 
-  /* ---- S4 presenter-controlled sequence ---- */
+  /* ---- presenter-controlled sequence ---- */
   .stage4{margin-top:2.2vh;max-width:1040px;width:100%;}
   .stage4.clickable{cursor:pointer;}
   .qbub{
@@ -143,12 +155,6 @@
   .kw .item{display:flex;align-items:center;gap:10px;font-weight:700;font-size:clamp(.98rem,1.6vw,1.15rem);}
   .kw .sq{width:12px;height:12px;border-radius:1px;background:var(--purple);flex:none;}
 
-  .mark{position:absolute;top:8vh;right:9vw;width:96px;height:96px;}
-  .mark.small{width:72px;height:72px;}
-  @keyframes spin{to{transform:rotate(360deg);}}
-  .mark svg{width:100%;height:100%;animation:spin 90s linear infinite;transform-origin:center;}
-  @media (prefers-reduced-motion: reduce){ .mark svg{animation:none;} }
-
   .nav{position:fixed;right:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:20;}
   .nav a{width:11px;height:11px;border-radius:2px;background:#C9BCDD;transition:all .3s;display:block;}
   .nav a.active{background:var(--purple);transform:scale(1.35);}
@@ -159,11 +165,11 @@
     section{padding:9vh 7vw;}
     .duo{grid-template-columns:1fr;}
     .nav{right:12px;}
-    .mark{width:64px;height:64px;top:6vh;right:7vw;}
     .credit{left:7vw;}
     .panel{margin-left:-18px;padding-left:18px;padding-right:18px;}
     .nest{padding:14px;}
     .nest-card{padding:24px 22px;}
+    .stn{font-size:22px;}
   }
 </style>
 </head>
@@ -172,44 +178,74 @@
 
   <!-- 1 · TITLE -->
   <section class="dark" id="s1">
-    <div class="mark" aria-hidden="true">
-      <svg viewBox="0 0 120 120">
-        <defs>
-          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#B9A5D6"/>
-            <stop offset="1" stop-color="#51247A"/>
-          </linearGradient>
-        </defs>
-        <g opacity=".38" transform="rotate(22.5 60 60)">
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(0 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(45 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(90 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(135 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(180 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(225 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(270 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(315 60 60)"/>
-        </g>
-        <g>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(0 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(45 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(90 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(135 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(180 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(225 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(270 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="url(#g1)" transform="rotate(315 60 60)"/>
-        </g>
-      </svg>
-    </div>
     <div class="kicker rv"><span class="sq"></span><span>UQBS AI Community of Practice</span></div>
     <h1 class="rv">AI that makes students <span class="it">think</span> –<br>not think for them.</h1>
     <p class="sub rv">A coaching + guardrail approach.</p>
     <div class="credit rv">Michael Lin &nbsp;·&nbsp; Principal Learning Designer &nbsp;·&nbsp; BEL AI Initiative, UQ Business School</div>
   </section>
 
-  <!-- 2 · OBSERVED IN PRACTICE -->
+  <!-- 2 · THE PREMISE (concept visual) -->
   <section class="light" id="s2">
+    <div class="kicker rv"><span class="sq"></span><span>The premise</span></div>
+    <div class="statement rv">Human judgement is the core – <span class="p">AI is the support, at every step.</span></div>
+
+    <div class="viz" id="viz">
+      <svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="4" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- AI base band -->
+        <line id="aiBand" x1="45" y1="330" x2="955" y2="330" stroke="#B9A5D6" stroke-width="2" opacity=".3"/>
+        <!-- AI support arcs (tips meet the nodes) -->
+        <path class="arc" d="M 60 330 Q 74 232 105 159" fill="none" stroke="#B9A5D6" stroke-width="2.5" stroke-linecap="round" opacity=".75"/>
+        <path class="arc" d="M 255 330 Q 269 214 300 127" fill="none" stroke="#B9A5D6" stroke-width="2.5" stroke-linecap="round" opacity=".75"/>
+        <path class="arc" d="M 455 330 Q 469 238 500 167" fill="none" stroke="#B9A5D6" stroke-width="2.5" stroke-linecap="round" opacity=".75"/>
+        <path class="arc" d="M 655 330 Q 669 208 700 121" fill="none" stroke="#B9A5D6" stroke-width="2.5" stroke-linecap="round" opacity=".75"/>
+        <path class="arc" d="M 855 330 Q 869 230 900 157" fill="none" stroke="#B9A5D6" stroke-width="2.5" stroke-linecap="round" opacity=".75"/>
+        <!-- arc feet -->
+        <rect class="foot" x="56" y="325" width="9" height="9" fill="#B9A5D6"/>
+        <rect class="foot" x="251" y="325" width="9" height="9" fill="#B9A5D6"/>
+        <rect class="foot" x="451" y="325" width="9" height="9" fill="#B9A5D6"/>
+        <rect class="foot" x="651" y="325" width="9" height="9" fill="#B9A5D6"/>
+        <rect class="foot" x="851" y="325" width="9" height="9" fill="#B9A5D6"/>
+        <!-- node ripples (hidden until a pulse passes) -->
+        <rect class="ripple" data-n="0" x="98"  y="143" width="14" height="14" fill="none" stroke="#8B76AE" stroke-width="2" opacity="0"/>
+        <rect class="ripple" data-n="1" x="293" y="111" width="14" height="14" fill="none" stroke="#8B76AE" stroke-width="2" opacity="0"/>
+        <rect class="ripple" data-n="2" x="493" y="151" width="14" height="14" fill="none" stroke="#8B76AE" stroke-width="2" opacity="0"/>
+        <rect class="ripple" data-n="3" x="693" y="105" width="14" height="14" fill="none" stroke="#8B76AE" stroke-width="2" opacity="0"/>
+        <rect class="ripple" data-n="4" x="893" y="141" width="14" height="14" fill="none" stroke="#8B76AE" stroke-width="2" opacity="0"/>
+        <!-- the human through-line -->
+        <path id="humanPath" d="M 30 170 C 60 168 75 152 105 150 C 160 147 240 118 300 118 C 360 118 440 158 500 158 C 560 158 640 112 700 112 C 760 112 840 148 900 148 C 930 148 950 144 970 142" fill="none" stroke="#51247A" stroke-width="5" stroke-linecap="round"/>
+        <!-- stage nodes -->
+        <rect class="node" data-x="105" x="98"  y="143" width="14" height="14" rx="1" fill="#51247A"/>
+        <rect class="node" data-x="300" x="293" y="111" width="14" height="14" rx="1" fill="#51247A"/>
+        <rect class="node" data-x="500" x="493" y="151" width="14" height="14" rx="1" fill="#51247A"/>
+        <rect class="node" data-x="700" x="693" y="105" width="14" height="14" rx="1" fill="#51247A"/>
+        <rect class="node" data-x="900" x="893" y="141" width="14" height="14" rx="1" fill="#51247A"/>
+        <!-- stage labels -->
+        <text class="stn" x="105" y="120">FRAME</text>
+        <text class="stn" x="300" y="88">EXPLORE</text>
+        <text class="stn" x="500" y="128">REASON</text>
+        <text class="stn" x="700" y="82">CREATE</text>
+        <text class="stn" x="900" y="118">VERIFY</text>
+        <!-- drawing head + travelling signal -->
+        <circle id="drawHead" r="7" fill="#51247A" opacity="0" filter="url(#glow)"/>
+        <circle id="signal" r="6" fill="#6E3AA0" opacity="0" filter="url(#glow)"/>
+      </svg>
+      <div class="vlegend" id="vLegend">
+        <span class="chip"><i class="csq"></i>Human judgement – the through-line</span>
+        <span class="chip"><i class="csq l"></i>AI – support, at every step</span>
+      </div>
+    </div>
+
+    <p class="lead vcap" id="vCap">That's the premise everything here builds on – and it raises the real question: <strong>does our use of AI strengthen that thread, or quietly replace it?</strong></p>
+  </section>
+
+  <!-- 3 · OBSERVED IN PRACTICE -->
+  <section class="light" id="s3">
     <div class="kicker rv"><span class="sq"></span><span>Observed in practice</span></div>
     <div class="statement rv">Students are handing their thinking to AI – and it's the <span class="p">higher&#8209;order</span> thinking they hand over most.</div>
     <p class="lead rv">Higher-order is the deep end of learning – <strong>analysing, evaluating, creating</strong>.</p>
@@ -217,8 +253,8 @@
     <div class="panel rv">Which is the exact judgement <span class="p">our assessments are built to grow.</span></div>
   </section>
 
-  <!-- 3 · THE SHIFT -->
-  <section class="light" id="s3">
+  <!-- 4 · THE SHIFT -->
+  <section class="light" id="s4">
     <div class="kicker rv"><span class="sq"></span><span>The shift</span></div>
     <div class="statement rv">So the question isn't <span class="p">whether</span> to allow AI. It's whether AI can push them to think <span class="p">harder</span>.</div>
     <div class="nest" id="nest">
@@ -237,8 +273,8 @@
     <p class="travel rv">A method, not a tool – it travels to any writing-based analysis, across courses and disciplines.</p>
   </section>
 
-  <!-- 4 · SEE IT WORK (presenter-controlled) -->
-  <section class="light" id="s4">
+  <!-- 5 · SEE IT WORK (presenter-controlled) -->
+  <section class="light" id="s5">
     <div class="kicker rv"><span class="sq"></span><span>See it work</span></div>
     <div class="stage4" id="stage4">
       <div class="qbub" id="qbub"><span class="qt" id="qt" data-text="Find me two articles for this.">Find me two articles for this.</span><span class="caret" id="caret"></span><span class="who">A first-year student · same question · two AIs</span></div>
@@ -271,8 +307,8 @@
     </div>
   </section>
 
-  <!-- 5 · WHY IT MATTERS -->
-  <section class="light" id="s5">
+  <!-- 6 · WHY IT MATTERS -->
+  <section class="light" id="s6">
     <div class="kicker rv"><span class="sq"></span><span>Why it matters</span></div>
     <div class="statement rv">We're not policing AI.<br><span class="p" style="font-style:normal;">We're building judgement.</span></div>
     <p class="lead rv">As AI gets better at the writing and the analysis, the scarce human capability is judgement – deciding what matters, weighing the ethics, making the call. That's the core of management.</p>
@@ -285,32 +321,8 @@
     <div class="panel rv"><span class="p">Human-centred education</span> – with AI as the pressure, not the shortcut.</div>
   </section>
 
-  <!-- 6 · CLOSING -->
-  <section class="dark" id="s6">
-    <div class="mark small" aria-hidden="true">
-      <svg viewBox="0 0 120 120">
-        <g opacity=".38" transform="rotate(22.5 60 60)">
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(0 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(45 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(90 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(135 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(180 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(225 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(270 60 60)"/>
-          <rect x="56.5" y="16" width="7" height="24" rx="3.5" fill="#8B76AE" transform="rotate(315 60 60)"/>
-        </g>
-        <g>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(0 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(45 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(90 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(135 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(180 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(225 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(270 60 60)"/>
-          <rect x="55" y="8" width="10" height="34" rx="5" fill="#B9A5D6" transform="rotate(315 60 60)"/>
-        </g>
-      </svg>
-    </div>
+  <!-- 7 · CLOSING -->
+  <section class="dark" id="s7">
     <h1 class="rv">This is step one.</h1>
     <p class="sub rv">We're piloting it with colleagues now.</p>
     <p class="sub rv" style="color:#fff;margin-top:2.2vh;">If your assessment is about thinking – not just producing – <strong>happy to have a chat.</strong></p>
@@ -322,8 +334,20 @@
 <nav class="nav" id="nav"></nav>
 <div class="hint" id="hint">scroll · arrow keys</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  // Blocking fallback: if cdnjs or SRI fails, load the same GSAP version before continuing.
+  if (!window.gsap) {
+    document.write('<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"><\/script>');
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  // Blocking fallback keeps the following animation code from running too early.
+  if (!window.ScrollTrigger) {
+    document.write('<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"><\/script>');
+  }
+</script>
 <script>
   const deck = document.getElementById('deck');
   const sections = Array.from(deck.querySelectorAll('section'));
@@ -358,31 +382,109 @@
   });
 
   // ---- GSAP enhancement (no GSAP / no net: the page simply shows the finished state) ----
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Presentation deck: motion is ON by default. Append ?reduce-motion=1 only when a static version is required.
+  const reduce = new URLSearchParams(window.location.search).has('reduce-motion');
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
-    const INST = reduce; // instant mode: keep the click-gating, skip the motion
+    const INST = reduce;
 
-    // generic rise-in
     if (!INST) {
-      sections.forEach(sec => {
+      // generic rise-in
+      sections.forEach((sec, secIndex) => {
         const els = sec.querySelectorAll('.rv');
         if (!els.length) return;
         gsap.set(els, { autoAlpha: 0, y: 30 });
-        ScrollTrigger.create({
-          trigger: sec, scroller: deck, start: 'top 62%', once: true,
-          onEnter: () => gsap.to(els, { autoAlpha: 1, y: 0, duration: .85, stagger: .13, ease: 'power3.out' })
-        });
+        const reveal = () => gsap.to(els, { autoAlpha: 1, y: 0, duration: .85, stagger: .13, ease: 'power3.out' });
+        if (secIndex === 0) {
+          // The first slide is already inside the scroller at startup; reveal it explicitly.
+          requestAnimationFrame(reveal);
+        } else {
+          ScrollTrigger.create({
+            trigger: sec, scroller: deck, start: 'top 62%', once: true, invalidateOnRefresh: true,
+            onEnter: reveal
+          });
+        }
       });
 
-      // S3 nest sequence: frame settles, card lands inside, lip locks, caption
+      // ---- premise visual sequence (hand-rolled, no MotionPath dependency) ----
+      const hp = $('humanPath');
+      const arcs = gsap.utils.toArray('.arc');
+      const nodes = gsap.utils.toArray('.node');
+      const ripples = gsap.utils.toArray('.ripple');
+      const stns = gsap.utils.toArray('.stn');
+      const feet = gsap.utils.toArray('.foot');
+      const aiBand = $('aiBand'), vLegend = $('vLegend'), vCap = $('vCap');
+      const drawHead = $('drawHead'), signal = $('signal');
+      const hpLen = hp.getTotalLength();
+      const nodeX = nodes.map(n => +n.dataset.x);
+      const popNode = (idx) => gsap.fromTo(nodes[idx], { scale: 1 }, { scale: 1.5, duration: .18, yoyo: true, repeat: 1, transformOrigin: '50% 50%', ease: 'power2.out' });
+      const rippleNode = (idx) => gsap.fromTo(ripples[idx], { opacity: .7, scale: 1, transformOrigin: '50% 50%' }, { opacity: 0, scale: 3, duration: .9, ease: 'power2.out' });
+
+      gsap.set(hp, { strokeDasharray: hpLen, strokeDashoffset: hpLen });
+      arcs.forEach(a => { const L = a.getTotalLength(); gsap.set(a, { strokeDasharray: L, strokeDashoffset: L }); });
+      gsap.set(nodes, { scale: 0, transformOrigin: '50% 50%' });
+      gsap.set(stns, { autoAlpha: 0 });
+      gsap.set([aiBand, ...feet], { autoAlpha: 0 });
+      gsap.set([vLegend, vCap], { autoAlpha: 0, y: 14 });
+
+      ScrollTrigger.create({
+        trigger: '#s2', scroller: deck, start: 'top 60%', once: true,
+        onEnter: () => {
+          const drawn = { t: 0 };
+          const popped = new Set();
+          const tl = gsap.timeline();
+          tl.to(drawHead, { opacity: 1, duration: .3 }, 0)
+            .to(drawn, {
+              t: 1, duration: 1.8, ease: 'power1.inOut',
+              onUpdate: () => {
+                const len = drawn.t * hpLen;
+                gsap.set(hp, { strokeDashoffset: hpLen - len });
+                const p = hp.getPointAtLength(len);
+                drawHead.setAttribute('cx', p.x); drawHead.setAttribute('cy', p.y);
+                nodeX.forEach((nx, k) => {
+                  if (!popped.has(k) && p.x >= nx) {
+                    popped.add(k);
+                    gsap.fromTo(nodes[k], { scale: 0 }, { scale: 1, duration: .42, ease: 'back.out(2.4)' });
+                    gsap.fromTo(stns[k], { autoAlpha: 0, y: 6 }, { autoAlpha: 1, y: 0, duration: .42 });
+                  }
+                });
+              }
+            }, 0)
+            .to(drawHead, { opacity: 0, duration: .4 }, '>-.1')
+            .to(aiBand, { autoAlpha: .3, duration: .4 }, '-=.5')
+            .to(feet, { autoAlpha: 1, duration: .3, stagger: .08 }, '<')
+            .to(arcs, { strokeDashoffset: 0, duration: .6, stagger: .12, ease: 'power2.out' }, '<+=.05')
+            .to(vLegend, { autoAlpha: 1, y: 0, duration: .5 }, '+=.1')
+            .to(vCap, { autoAlpha: 1, y: 0, duration: .55 }, '-=.2')
+            .call(startLife);
+
+          function startLife(){
+            gsap.to(arcs, { opacity: .4, duration: 1.7, yoyo: true, repeat: -1, stagger: .3, ease: 'sine.inOut' });
+            gsap.set(signal, { opacity: .95 });
+            const sig = { t: 0 };
+            let prevX = -1, armed = new Set([0,1,2,3,4]);
+            gsap.to(sig, {
+              t: 1, duration: 5.5, repeat: 0, ease: 'none',
+              onRepeat: () => { prevX = -1; armed = new Set([0,1,2,3,4]); },
+              onUpdate: () => {
+                const p = hp.getPointAtLength(sig.t * hpLen);
+                signal.setAttribute('cx', p.x); signal.setAttribute('cy', p.y);
+                nodeX.forEach((nx, k) => { if (armed.has(k) && prevX >= 0 && prevX < nx && p.x >= nx) { armed.delete(k); rippleNode(k); popNode(k); } });
+                prevX = p.x;
+              }
+            });
+          }
+        }
+      });
+
+      // ---- nest sequence ----
       const nest = $('nest'), nestCard = $('nestCard'), nestLip = $('nestLip'), nestCap = $('nestCap');
       gsap.set(nest, { autoAlpha: 0, scale: .975, transformOrigin: '50% 60%' });
       gsap.set(nestCard, { autoAlpha: 0, y: 26 });
       gsap.set(nestLip, { autoAlpha: 0 });
       gsap.set(nestCap, { autoAlpha: 0, y: 14 });
       ScrollTrigger.create({
-        trigger: '#s3', scroller: deck, start: 'top 55%', once: true,
+        trigger: '#s4', scroller: deck, start: 'top 55%', once: true,
         onEnter: () => {
           gsap.timeline()
             .to(nest, { autoAlpha: 1, scale: 1, duration: .6, ease: 'power3.out' }, '+=.35')
@@ -393,7 +495,7 @@
       });
     }
 
-    // ---- S4: presenter-controlled four acts ----
+    // ---- presenter-controlled four acts ----
     const stage4El = $('stage4');
     const qbub = $('qbub'), qt = $('qt'), caret = $('caret');
     const cardA = $('cardA'), cardB = $('cardB');
@@ -406,12 +508,11 @@
     const footEls = document.querySelectorAll('#foot4 p');
     const cue = $('cue'), replayBtn = $('replay');
 
-    // initial (rewound) states
     gsap.set(qbub, { autoAlpha: 0, y: 16, scale: .97 });
     gsap.set([cardA, cardB], { autoAlpha: 0, y: 28 });
     gsap.set(cites, { autoAlpha: 0, x: -12 });
     gsap.set(strikes, { width: 0 });
-    gsap.set(nfs, { autoAlpha: 0, scale: .5 });
+    gsap.set(nfs, { autoAlpha: 0, scale: .4, rotate: -14, transformOrigin: '50% 50%' });
     gsap.set([flagA, coachnote], { autoAlpha: 0 });
     gsap.set(hl, { backgroundSize: '0% 100%' });
     gsap.set(footEls, { autoAlpha: 0, y: 16 });
@@ -434,11 +535,12 @@
     function hideCue(){ cue.style.display = 'none'; stage4El.classList.remove('clickable'); }
 
     async function act1(){
-      await tw(qbub, { autoAlpha: 1, y: 0, scale: 1, duration: .45, ease: 'back.out(1.5)' });
+      await tw(qbub, { autoAlpha: 1, y: 0, scale: 1, duration: .45, ease: 'back.out(1.6)' });
       caret.classList.add('on');
       await typeText(qt, 30);
       caret.classList.remove('on');
-      await tw(cardA, { autoAlpha: 1, y: 0, duration: .5, ease: 'power3.out' });
+      gsap.set(cardA, { scale: .98 });
+      await tw(cardA, { autoAlpha: 1, y: 0, scale: 1, duration: .5, ease: 'back.out(1.3)' });
       dotsA.style.display = 'flex'; await wait(850); dotsA.style.display = 'none';
       await typeText(sayA);
       for (const c of cites) { await tw(c, { autoAlpha: 1, x: 0, duration: .4 }); }
@@ -446,15 +548,18 @@
     async function act2(){
       for (let i = 0; i < strikes.length; i++) {
         await tw(strikes[i], { width: '100%', duration: .45, ease: 'power2.inOut' });
-        await tw(nfs[i], { autoAlpha: 1, scale: 1, duration: .28, ease: 'back.out(2)' });
+        gsap.fromTo(cites[i], { x: 0 }, { x: 2.5, duration: .05, repeat: 5, yoyo: true, ease: 'none' });
+        gsap.to(cites[i], { opacity: .5, duration: .4, delay: .12 });
+        await tw(nfs[i], { autoAlpha: 1, scale: 1, rotate: -3, duration: .32, ease: 'back.out(3)' });
       }
       await tw(flagA, { autoAlpha: 1, duration: .45 });
     }
     async function act3(){
-      await tw(cardB, { autoAlpha: 1, y: 0, duration: .5, ease: 'power3.out' });
+      gsap.set(cardB, { scale: .97 });
+      await tw(cardB, { autoAlpha: 1, y: 0, scale: 1, duration: .55, ease: 'back.out(1.4)' });
       dotsB.style.display = 'flex'; await wait(800); dotsB.style.display = 'none';
       await typeText(sayB);
-      await tw(hl, { backgroundSize: '100% 100%', duration: .65, ease: 'power2.out' });
+      await tw(hl, { backgroundSize: '100% 100%', duration: .7, ease: 'power2.out' });
       await tw(coachnote, { autoAlpha: 1, duration: .4 });
     }
     async function act4(){
@@ -470,7 +575,7 @@
     }
 
     ScrollTrigger.create({
-      trigger: '#s4', scroller: deck, start: 'top 55%', once: true,
+      trigger: '#s5', scroller: deck, start: 'top 55%', once: true,
       onEnter: () => { if (!started) { started = true; runStage(1); } }
     });
 
@@ -485,13 +590,26 @@
       gsap.set([cardA, cardB], { autoAlpha: 0, y: 28 });
       gsap.set(cites, { autoAlpha: 0, x: -12 });
       gsap.set(strikes, { width: 0 });
-      gsap.set(nfs, { autoAlpha: 0, scale: .5 });
+      gsap.set(nfs, { autoAlpha: 0, scale: .4, rotate: -14, transformOrigin: '50% 50%' });
       gsap.set([flagA, coachnote], { autoAlpha: 0 });
       gsap.set(hl, { backgroundSize: '0% 100%' });
       gsap.set(footEls, { autoAlpha: 0, y: 16 });
       sayA.style.visibility = 'hidden'; sayB.style.visibility = 'hidden';
       stage = 0; runStage(1);
     });
+
+    // Recalculate custom-scroller geometry after the DOM, viewport and web font settle.
+    const refreshMotion = () => {
+      ScrollTrigger.refresh(true);
+      ScrollTrigger.update();
+    };
+    requestAnimationFrame(refreshMotion);
+    window.addEventListener('load', refreshMotion, { once: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refreshMotion);
+    console.info('[MGTS1301 v5] GSAP', gsap.version, '| ScrollTrigger', ScrollTrigger.version, '| triggers', ScrollTrigger.getAll().length);
+  } else {
+    // Keep the original graceful static fallback, but make the cause visible in DevTools.
+    console.error('[MGTS1301 v5] Animation libraries did not load. The deck is showing its static fallback state.');
   }
 </script>
 </body>
